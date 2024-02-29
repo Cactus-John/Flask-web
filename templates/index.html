@@ -9,8 +9,9 @@
 </head>
 
 <body>
-  <section class="header-section">
-    <h1>Naslovna</h1>
+  <h1>Hey there, I am Ivan Bošnjak</h1>
+  <header class="parallax-header">
+    <img src="static/images/red.jpg">
     <nav>
       <div class="navbar">
         <a href="{{url_for('home')}}">Home</a>
@@ -22,18 +23,19 @@
             <a href="{{url_for('get_weather')}}">Search Weather</a>
           </div>
         </div>
-        <div class="dropdown">
-          <button class="dropbtn">Music
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <a href="">Travis Scott</a>
-            <a href="">The Weeknd</a>
-          </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">Music
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="">Travis Scott</a>
+          <a href="">The Weeknd</a>
         </div>
       </div>
+      </div>
     </nav>
-  </section>
+  </header>
 
   <section class="cool-section">
     <div class="section-content">
@@ -53,23 +55,5 @@
     </div>
   </section>
 
-  <section class="cool-section">
-    <div class="section-content">
-      <h2>About me:</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit
-        voluptatem accusantium doloremque laudantium.</p>
-      <button>Learn More</button>
-    </div>
-  </section>
-
-  <section class="cool-section">
-    <div class="section-content">
-      <h2>About me:</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit
-        voluptatem accusantium doloremque laudantium.</p>
-      <button>Learn More</button>
-    </div>
-  </section>
 </body>
-
 </html>

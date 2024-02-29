@@ -1,0 +1,27 @@
+
+body {
+    background: wheat;
+    
+}
+
+:root {
+    --custom-cursor-size: 20;
+  }
+  
+  .element {
+    cursor: url('custom-cursor.png') calc(var(--custom-cursor-size) * 1.5) 1.5, auto;
+  }
+
+h1 {
+    font-size: 32px;
+    color:red;
+    font-weight: bolder;
+    text-shadow: 1px 1px 6px #ff0000;
+  }
+
+  .flex-container {
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    
+  }

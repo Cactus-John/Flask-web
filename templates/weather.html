@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }} Weather</title>
-    <link href="{{ url_for('static', filename='styles/style.css') }}" rel="stylesheet" />
+    <link href="static/css/style-weather.css" rel="stylesheet" />
 </head>
 
 <body>
+
+    <div class = "flex-container">
     <h1> {{ title }} Weather</h1>
     <p> {{ status }} </p>
     <p> {{ temp }} &deg;</p>
@@ -18,6 +20,7 @@
         <input type="text" name="city" id="city" placeholder="Enter a City" />
         <button type="submit">Submit</button>
     </form>
+    </div>
 </body>
 
 </html>
