@@ -1,27 +1,71 @@
-
 body {
-    background: wheat;
-    
+  background: black;
 }
 
 :root {
-    --custom-cursor-size: 20;
-  }
-  
-  .element {
-    cursor: url('custom-cursor.png') calc(var(--custom-cursor-size) * 1.5) 1.5, auto;
-  }
+  --custom-cursor-size: 20;
+}
 
+.element {
+  cursor: url("custom-cursor.png") calc(var(--custom-cursor-size) * 1.5) 1.5, auto;
+}
+
+#flex-item1,
 h1 {
-    font-size: 32px;
-    color:red;
-    font-weight: bolder;
-    text-shadow: 1px 1px 6px #ff0000;
-  }
+  font-size: 32px;
+  color: red;
+  font-weight: bolder;
+  text-shadow: 1px 1px 6px #ff0000;
+}
 
-  .flex-container {
-    display: flex;
-    align-content: center;
-    flex-direction: column;
-    
-  }
+.navbarContainer {
+  display: inline-flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+  margin: 10px;
+  padding: 20px;
+}
+
+.flex-container {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  position: absolute;
+  margin-inline: 50%;
+  top: 35%;
+  font: 1em sans-serif;
+  font-style: oblique;
+  border-radius: 0.53%;
+  border-style: double;
+  border-color: red;
+}
+.flex-container .flex-item1 {
+  flex-direction: directionForflexItems;
+  padding: 0.2%;
+  color: white;
+  margin: 10px;
+  flex: 1 1 12dvh;
+  -webkit-text-size-adjust: 15%;
+}
+.flex-container .flex-item2 {
+  flex-direction: directionForflexItems;
+  padding: 0.2%;
+  -webkit-text-fill-color: white;
+  margin: 10px;
+}
+.flex-container .flex-item3 {
+  flex-direction: directionForflexItems;
+  padding: 0.2%;
+  -webkit-text-fill-color: white;
+  margin: 10px;
+}
+.flex-container .flex-item4 {
+  flex-direction: directionForflexItems;
+  padding: 0.2%;
+  -webkit-text-fill-color: white;
+  margin: 10px;
+}/*# sourceMappingURL=style-weather.css.map */

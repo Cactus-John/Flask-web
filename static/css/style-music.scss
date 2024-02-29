@@ -1,17 +1,21 @@
+$bodycolor: black;
+
 body {
   background-color: bodycolor;
 }
 
-header .section-header {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-  /* background: url('static/images/red.jpg') center/cover no-repeat; */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-align: center;
+header {
+  .section-header {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    /* background: url('static/images/red.jpg') center/cover no-repeat; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+  }
 }
 
 .navbarContainer {
@@ -32,8 +36,9 @@ header .section-header {
   width: 650px;
   -webkit-text-fill-color: wheat;
   -webkit-text-size-adjust: initial;
+
+  a {
+    float: left;
+    padding: 12px 14px;
+  }
 }
-.navbar a {
-  float: left;
-  padding: 12px 14px;
-}/*# sourceMappingURL=style-music.css.map */

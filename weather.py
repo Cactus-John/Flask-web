@@ -5,7 +5,7 @@ import os
 
 load_dotenv()
 
-def get_current_weather(city="Kansas City"):
+def get_current_weather(city="Samobor"):
 
     request_url = f'http://api.openweathermap.org/data/2.5/weather?appid={os.getenv("API_KEY")}&q={city}&units=metric'
 

@@ -5,21 +5,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }} Weather</title>
+    <link rel="stylesheet" href="static/css/style.css">
     <link href="static/css/style-weather.css" rel="stylesheet" />
 </head>
 
 <body>
+    <nav class="navbarContainer">
+        <div class="navbar">
+            <a href="{{url_for('home')}}">Home</a>
+            <div class="dropdown">
+                <button class="dropbtn">Weather
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="{{url_for('get_weather')}}">Search Weather</a>
+                </div>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Music
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="">Travis Scott</a>
+                <a href="">The Weeknd</a>
+            </div>
+        </div>
+        </div>
+    </nav>
 
-    <div class = "flex-container">
-    <h1> {{ title }} Weather</h1>
-    <p> {{ status }} </p>
-    <p> {{ temp }} &deg;</p>
-    <p> Feels like {{ feels_like }} &deg;</p>
+    <div class="flex-container">
+        <div class="flex-item1">
+            <h1> {{ title }} Weather</h1>
+        </div>
+        <div class="flex-item2">
+            <p> {{ status }} </p>
+        </div>
+        <div class="flex-item3">
+            <p> {{ temp }} &deg;</p>
+        </div>
+        <div class="flex-item4">
+            <p> Feels like {{ feels_like }} &deg;</p>
+        </div>
 
-    <form action="/weather">
-        <input type="text" name="city" id="city" placeholder="Enter a City" />
-        <button type="submit">Submit</button>
-    </form>
+        <form action="/weather">
+            <input type="text" name="city" id="city" placeholder="Enter a City" />
+            <button type="submit">Submit</button>
+        </form>
     </div>
 </body>
 

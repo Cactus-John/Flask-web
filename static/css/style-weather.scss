@@ -1,0 +1,87 @@
+$bodycolor: black;
+$textColorForFlexItems: white;
+$h1color: red;
+$h1fontSize: 32px;
+$h1fontWeight: bolder;
+$h1textShadow: 1px 1px 6px #ff0000;
+
+$directionForflexItems: column;
+
+$paddingForFlexItems: 0.2%;
+
+body {
+  background: $bodycolor;
+}
+
+:root {
+  --custom-cursor-size: 20;
+}
+
+.element {
+  cursor: url('custom-cursor.png') calc(var(--custom-cursor-size) * 1.5) 1.5, auto;
+}
+
+#flex-item1,
+h1 {
+  font-size: $h1fontSize;
+  color: $h1color;
+  font-weight: $h1fontWeight;
+  text-shadow: $h1textShadow; 
+  
+}
+
+.navbarContainer {
+  display: inline-flex;
+  align-items: center;
+  flex-direction:row-reverse;
+  flex-wrap: nowrap;
+  margin:10px;
+  padding:20px;
+}
+
+.flex-container {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  position: absolute;
+  margin-inline: 50%;
+  top:35%;
+  font: 1em sans-serif;
+  font-style: oblique;
+  border-radius: .53%;
+  border-style:double;
+  border-color: red;
+
+  .flex-item1 {
+    flex-direction: directionForflexItems;
+    padding:$paddingForFlexItems;
+    color:$textColorForFlexItems;
+    margin:10px;
+    flex: 1 1 12dvh;
+    -webkit-text-size-adjust:15%;
+  }
+
+  .flex-item2 {
+    flex-direction: directionForflexItems; 
+    padding:$paddingForFlexItems;
+    -webkit-text-fill-color:$textColorForFlexItems;
+    margin:10px;
+  }
+
+  .flex-item3 {
+    flex-direction: directionForflexItems;
+    padding:$paddingForFlexItems;
+    -webkit-text-fill-color:$textColorForFlexItems;
+    margin:10px;
+  }
+
+  .flex-item4 {
+    flex-direction: directionForflexItems;
+    padding:$paddingForFlexItems;
+    -webkit-text-fill-color:$textColorForFlexItems;
+    margin:10px;
+  } 
+}
