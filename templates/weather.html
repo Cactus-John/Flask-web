@@ -36,7 +36,7 @@
 
     <div class="flex-container">
         <div class="flex-item1">
-            <h1> {{ title }} Weather</h1>
+            <p class="headerText"> {{ title }} Weather</p>
         </div>
         <div class="flex-item2">
             <p> {{ status }} </p>
@@ -49,8 +49,8 @@
         </div>
 
         <form action="/weather">
-            <input type="text" name="city" id="city" placeholder="Enter a City" />
-            <button type="submit">Submit</button>
+            <div class = "flex-item5"><input type="text" name="city" id="city" placeholder="Enter a City" /></div>
+            <div class = "flex-item6"><button type="submit">Submit</button></div>
         </form>
     </div>
 </body>
