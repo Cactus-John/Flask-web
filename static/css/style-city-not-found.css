@@ -1,0 +1,29 @@
+body {
+  background-color: black;
+}
+
+h4 {
+  color: aqua;
+  position: fixed;
+  top: 1;
+  left: 10;
+}
+
+.form-container {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+  margin: 10px;
+  padding: 20px;
+}
+.form-container #item1,
+.form-container #item2,
+.form-container #item3,
+.form-container #item4 {
+  display: inline-block;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+  -webkit-text-fill-color: aquamarine;
+}/*# sourceMappingURL=style-city-not-found.css.map */

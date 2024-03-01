@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /*Velicina fonta za h1 spremljena u varijablu */
 /*Boja fonta za h1 spremljena u varijablu */
 /*Debljina fonta za h1 spremljena u varijablu */
@@ -10,22 +9,23 @@ body {
 
 :root {
   --custom-cursor-size: 20;
+  --bgcolor: red;
 }
 
 .element {
   cursor: url("custom-cursor.png") calc(var(--custom-cursor-size) * 1.5) 1.5, auto;
 }
 
-.headerText,
-h1 {
+.headerText {
   font-size: 32px;
-  color: red;
-  font-weight: bolder;
+  color: var(--bgcolor);
+  font-weight: var;
   text-shadow: 1px 1px 6px #ff0000;
   text-align: center;
 }
 
-.navbarContainer { /*Container navigacije za odlazak  na druge stranice */
+.navbarContainer {
+  /*Container navigacije za odlazak na druge stranice */
   display: inline-flex;
   align-items: center;
   flex-direction: row-reverse;
@@ -34,7 +34,8 @@ h1 {
   padding: 20px;
 }
 
-.flex-container { /*Flex container koji sadrzi ispisane informacije o vremenskim podatcima nekog mjesta */
+.flex-container {
+  /*Flex container koji sadrzi ispisane informacije o vremenskim podatcima nekog mjesta */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,38 +52,23 @@ h1 {
   border-color: red;
   box-shadow: 0 0 0 10px #ccc, 0 0 0 20px #fff;
 }
-.flex-container .flex-item1 {
-  flex-direction: directionForflexItems; /*FlexItem1 - City name*/
-  padding: 0.2%;
-  color: white;
-  margin: 1%;
-}
-.flex-container .flex-item2 {
-  flex-direction: directionForflexItems; /*FlexItem2 - Status(suncano/maglovito...)*/
-  padding: 0.2%;
-  -webkit-text-fill-color: white;
-  margin: 1%;
-}
-.flex-container .flex-item3 {
-  flex-direction: directionForflexItems; /*FlexItem3 - Temperatura (°C) */
-  padding: 0.2%;
-  -webkit-text-fill-color: white;
-  margin: 1%;
-}
-.flex-container .flex-item4 {
-  flex-direction: directionForflexItems; /*Flexitem4 - Stvarni osjećaj temperature */
+.flex-containerat-root .flex-item2,
+.flex-containerat-root .flex-item1,
+.flex-containerat-root .flex-item3,
+.flex-containerat-root .flex-item4 {
+  flex-direction: directionForflexItems;
   padding: 0.2%;
   -webkit-text-fill-color: white;
   margin: 1%;
 }
 .flex-container .flex-item5 {
-  flex-direction: directionForflexItems; /*Flexitem5 - Unutar Form input text */
+  flex-direction: directionForflexItems;
   padding: 0.2%;
   -webkit-text-fill-color: black;
   margin: 1%;
 }
 .flex-container .flex-item6 {
-  flex-direction: directionForflexItems; /*Flexitem5 - Unutar Form button Submit */
+  flex-direction: directionForflexItems;
   padding: 0.2%;
   -webkit-text-fill-color: white;
   margin: 1%;

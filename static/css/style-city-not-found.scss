@@ -1,0 +1,32 @@
+body {
+  background-color: black;
+}
+
+h4 {
+  color: aqua;
+  position: fixed;
+  top: 1;
+  left: 10;
+
+}
+
+.form-container {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+  margin: 10px;
+  padding: 20px;
+
+  #item1,
+  #item2,
+  #item3,
+  #item4 {
+    display: inline-block;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    text-align: center;
+    -webkit-text-fill-color: aquamarine;
+
+  }
+}

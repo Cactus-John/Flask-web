@@ -1,12 +1,16 @@
 
 $bodycolor: black;
 $textColorForFlexItems: white;
-$h1fontSize: 32px; /*Velicina fonta za h1 spremljena u varijablu */
-$h1color: red; /*Boja fonta za h1 spremljena u varijablu */
-$h1fontWeight: bolder; /*Debljina fonta za h1 spremljena u varijablu */
-$h1textShadow: 1px 1px 6px #ff0000; /*Sjena oko teksta crvene boje za h1 spremljena u varijablu*/
-$h1textAlign: center; /*Poravnanje sredisnje za h1 spremljeno u varijablu */
-
+$h1fontSize: 32px;
+/*Velicina fonta za h1 spremljena u varijablu */
+$h1color: magenta;
+/*Boja fonta za h1 spremljena u varijablu */
+$h1fontWeight: bolder;
+/*Debljina fonta za h1 spremljena u varijablu */
+$h1textShadow: 1px 1px 6px #ff0000;
+/*Sjena oko teksta crvene boje za h1 spremljena u varijablu*/
+$h1textAlign: center;
+/*Poravnanje sredisnje za h1 spremljeno u varijablu */
 
 $directionForflexItems: column;
 
@@ -18,24 +22,23 @@ body {
 
 :root {
   --custom-cursor-size: 20;
+  --bgcolor: red;
 }
 
 .element {
   cursor: url('custom-cursor.png') calc(var(--custom-cursor-size) * 1.5) 1.5, auto;
 }
 
-.headerText,    /*klasa headerText ima iste vrijednosti ko h1 radi jednostavnijeg ispisa u weather.html */
-h1 {                
-
+.headerText {
   font-size: $h1fontSize;
-  color: $h1color;
-  font-weight: $h1fontWeight;
+  color: var(--bgcolor);
+  font-weight: var;
   text-shadow: $h1textShadow;
   text-align: $h1textAlign;
 }
 
-.navbarContainer {     /*Container navigacije za odlazak  na druge stranice */
-
+.navbarContainer {
+  /*Container navigacije za odlazak na druge stranice */
   display: inline-flex;
   align-items: center;
   flex-direction: row-reverse;
@@ -44,7 +47,8 @@ h1 {
   padding: 20px;
 }
 
-.flex-container {  /*Flex container koji sadrzi ispisane informacije o vremenskim podatcima nekog mjesta */
+.flex-container {
+  /*Flex container koji sadrzi ispisane informacije o vremenskim podatcima nekog mjesta */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,42 +65,28 @@ h1 {
   border-color: red;
   box-shadow: 0 0 0 10px #ccc, 0 0 0 20px #fff;
 
-  .flex-item1 {
-    flex-direction: directionForflexItems;    /*FlexItem1 - City name*/
-    padding: $paddingForFlexItems;
-    color: $textColorForFlexItems;
-    margin: 1%;
+  &at-root {
+    .flex-item2,
+    .flex-item1,
+    .flex-item3,
+    .flex-item4 {
+
+      flex-direction: directionForflexItems;
+      padding: $paddingForFlexItems;
+      -webkit-text-fill-color: white;
+      margin: 1%;
+    }
   }
 
-  .flex-item2 {
-    flex-direction: directionForflexItems;  /*FlexItem2 - Status(suncano/maglovito...)*/
-    padding: $paddingForFlexItems;
-    -webkit-text-fill-color: $textColorForFlexItems;
-    margin: 1%;
-  }
-
-  .flex-item3 {
-    flex-direction: directionForflexItems;  /*FlexItem3 - Temperatura (°C) */ 
-    padding: $paddingForFlexItems;
-    -webkit-text-fill-color: $textColorForFlexItems;
-    margin: 1%;
-  }
-
-  .flex-item4 {
-    flex-direction: directionForflexItems;  /*Flexitem4 - Stvarni osjećaj temperature */ 
-    padding: $paddingForFlexItems;
-    -webkit-text-fill-color: $textColorForFlexItems;
-    margin: 1%;
-  }
   .flex-item5 {
-    flex-direction: directionForflexItems;  /*Flexitem5 - Unutar Form input text */ 
+    flex-direction: directionForflexItems;
     padding: $paddingForFlexItems;
     -webkit-text-fill-color: black;
     margin: 1%;
   }
 
   .flex-item6 {
-    flex-direction: directionForflexItems;  /*Flexitem5 - Unutar Form button Submit */ 
+    flex-direction: directionForflexItems;
     padding: $paddingForFlexItems;
     -webkit-text-fill-color: $textColorForFlexItems;
     margin: 1%;
