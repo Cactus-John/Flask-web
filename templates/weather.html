@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }} Weather</title>
-    <link rel="stylesheet" href="static/css/style.css">
-    <link href="static/css/style-weather.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style-weather.css')}}" />
 </head>
 
 <body>
@@ -14,9 +14,6 @@
         <div class="navbar">
             <a href="{{url_for('home')}}">Home</a>
             <div class="dropdown">
-                <button class="dropbtn">Weather
-                    <i class="fa fa-caret-down"></i>
-                </button>
                 <div class="dropdown-content">
                     <a href="{{url_for('get_weather')}}">Search Weather</a>
                 </div>

@@ -55,108 +55,126 @@ p {
   width: 650px;
   -webkit-text-fill-color: wheat;
   -webkit-text-size-adjust: initial;
-}
-.navbar a {
-  float: left;
-  font-size: 16px;
-  color: wheat;
-  text-align: center;
-  padding: 14px 16px;
-  margin: 0 14px;
-  text-decoration: none;
+
+  a {
+    float: left;
+    font-size: 16px;
+    color: wheat;
+    text-align: center;
+    padding: 14px 16px;
+    margin: 0 14px;
+    text-decoration: none;
+    
+  }
 }
 
 .dropdown {
   float: left;
   overflow: hidden;
-}
-.dropdown .dropbtn {
-  font-size: 16px;
-  border: none;
-  outline: none;
-  color: wheat;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-}
 
+  .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: wheat;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+  }
+
+}
 @keyframes zoomInTextNavbar {
   0% {
     transform: scale(1, 1);
   }
+
   50% {
     transform: scale(1.75, 1.75);
   }
+
   100% {
     transform: scale(1.5, 1.5);
   }
 }
-.navbar a:hover,
-.navbar .dropdown:hover .dropbtn {
-  background-color: none;
-  animation-name: zoomInTextNavbar;
-  animation-duration: 2s;
-  animation-play-state: inherit;
-  animation-fill-mode: forwards;
-  -webkit-animation-fill-mode: forwards;
+
+.navbar {
+  a:hover,
+  .dropdown:hover .dropbtn {
+    background-color: none;
+    animation-name: zoomInTextNavbar;
+    animation-duration: 2s;
+    animation-play-state: inherit;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+  }
 }
 
 @keyframes fillDropButtonWcolor {
   0% {
     background-color: red;
   }
+
   50% {
     background-color: darkred;
   }
+
   100% {
     background-color: crimson;
   }
 }
+
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   z-index: 1;
   animation-name: fillDropButtonWcolor;
   animation-duration: 5s;
   animation-play-state: running;
   animation-iteration-count: infinite;
-}
-.dropdown-content a {
-  float: none;
-  color: black;
-  font: 1rem sans-serif;
-  font-weight: bold;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
 
+  a {
+    float: none;
+    color: black;
+    font: 1rem sans-serif;
+    font-weight: bold;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+}
 @keyframes FillwColorDropdownContentHover {
   0% {
     background-color: red;
   }
+
   50% {
     background-color: gray;
   }
+
   100% {
     background-color: violet;
   }
 }
-.dropdown-content a:hover {
-  background-color: #ddd;
-  animation-name: FillwColorDropdownContentHover;
-  animation-duration: 5s;
-  animation-iteration-count: inherit;
-  animation-play-state: running;
+
+.dropdown-content {
+  a:hover {
+    background-color: #ddd;
+    animation-name: FillwColorDropdownContentHover;
+    animation-duration: 5s;
+    animation-iteration-count: inherit;
+    animation-play-state: running;
+  }
 }
 
-.dropdown:hover .dropdown-content {
-  display: block;
+.dropdown:hover {
+  .dropdown-content {
+    display: block;
+  }
 }
 
 .cool-section {
@@ -179,10 +197,11 @@ button {
   border-radius: 4px;
   cursor: grab;
   font-size: 16px;
-  transition: background-color 0.3s ease-in-out;
-}
-button :hover {
-  background-color: #2980b9;
+  transition: background-color .3s ease-in-out;
+
+  :hover {
+    background-color: #2980b9;
+  }
 }
 
 footer {
@@ -212,4 +231,5 @@ footer {
   background: black;
   background-attachment: fixed;
   background-size: cover;
-}/*# sourceMappingURL=style.css.map */
+
+}
