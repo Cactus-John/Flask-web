@@ -21,12 +21,7 @@ body {
 }
 
 :root {
-  --custom-cursor-size: 20;
   --bgcolor: red;
-}
-
-.element {
-  cursor: url('custom-cursor.png') calc(var(--custom-cursor-size) * 1.5) 1.5, auto;
 }
 
 .headerText {
@@ -99,7 +94,7 @@ body {
     text-align: center;
   }
 }
-@media only screen and (max-width:600px) {
+@media only screen and (max-width:900px) {
   .navbarContainer {
     display: inline-block;
     width: 100%;
