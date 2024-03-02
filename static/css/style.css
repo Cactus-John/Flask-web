@@ -7,13 +7,8 @@ body {
 span {
   color: darkmagenta;
   font-weight: bolder;
-  text-shadow: none;
-}
-
-#span1 {
-  color: green;
-  font-weight: bolder;
-  text-shadow: none;
+  text-shadow: 3px 3px 6px magenta;
+  filter: blur(2px);
 }
 
 h1 {
@@ -21,7 +16,7 @@ h1 {
   font-size: 64px;
   color: white;
   font-weight: bolder;
-  text-shadow: 3px 3px 6px wheat;
+  text-shadow: 3px 3px 6px red;
   position: absolute;
   top: 40%;
   left: 20%;
@@ -39,11 +34,11 @@ h3 {
 
 h4 {
   color: darkmagenta;
-  font-size: 26px;
+  font-size: 64px;
   text-align: center;
   position: absolute;
-  top: 15%;
-  left: 5%;
+  top: 36%;
+  right: 20%;
 }
 
 p {
@@ -52,14 +47,15 @@ p {
 }
 
 .navbarContainer {
-  background-color: none;
+  background-color: black;
+  filter: hue-rotate(-0.25turn);
   /*outline: 3px solid red;*/
   position: absolute;
   display: block;
-  width: 100dvh;
-  min-height: 250px;
-  top: 0;
-  right: 0;
+  width: 50dvh;
+  min-height: 20px;
+  top: 50px;
+  right: 230px;
   z-index: 1;
 }
 
@@ -272,7 +268,6 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("static/images/red.jpg") no-repeat 100%;
     background-attachment: fixed;
     background-size: cover;
     background-position: center;

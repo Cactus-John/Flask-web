@@ -5,6 +5,7 @@
 /*Poravnanje sredisnje za h1 spremljeno u varijablu */
 body {
   background: black;
+  perspective: none;
 }
 
 :root {
@@ -25,8 +26,7 @@ body {
   position: absolute;
   align-items: center;
   flex-direction: row;
-  margin-block-end: 50%;
-  left: 745px;
+  right: 245px;
 }
 
 .flex-container {
@@ -39,7 +39,7 @@ body {
   position: absolute;
   margin-inline: 50%;
   margin-block: auto;
-  top: 200px;
+  top: 100px;
   left: -100px;
   font: 1em sans-serif;
   font-style: oblique;
