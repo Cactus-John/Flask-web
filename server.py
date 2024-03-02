@@ -30,6 +30,7 @@ def get_weather():
         title=weather_data["name"],
         status=weather_data["weather"][0]["description"].capitalize(),
         temp=f"{weather_data['main']['temp']:.1f}",
+        icon=weather_data["weather"][0]["icon"],
         feels_like=f"{weather_data['main']['feels_like']:.1f}"
     )
 
