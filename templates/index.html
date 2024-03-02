@@ -9,33 +9,38 @@
 </head>
 
 <body>
-  <div class="parallax">
-    <div class="header">
-      <h1>Hey there,<br><br> I am <br>
-        <span>𝕀𝕧𝕒𝕟 𝔹𝕠š𝕟𝕛𝕒𝕜</span>
+  <div class="header">
+    <div class="parallax__layer parallax__layer__0">
+      <img src="../static/images/black3.jpg">
+    </div>
+    <div class="parallax__layer parallax__layer__1">
+      <h1>
+        <span>𝕀𝕧𝕒𝕟</span>
       </h1>
-      <nav class="navbarContainer">
-        <div class="navbar">
-          <a href="{{url_for('home')}}">Home</a>
-          <div class="dropdown">
-            <button class="dropbtn">Weather</button>
-            <div class="dropdown-content">
-              <a href="{{url_for('get_weather')}}">Search Weather</a>
-            </div>
-          </div>
-
-          <div class="dropdown">
-            <button class="dropbtn">Music
-            </button>
-            <div class="dropdown-content">
-              <a href="{{url_for('proba')}}">Artists</a>
-              <a href="{{url_for('test')}}">Albums</a>
-            </div>
+      <h4>
+        <span>𝔹𝕠š𝕟𝕛𝕒𝕜</span>
+      </h4>
+    </div>
+    <nav class="navbarContainer">
+      <div class="navbar">
+        <a href="{{url_for('home')}}">Home</a>
+        <div class="dropdown">
+          <button class="dropbtn">Weather</button>
+          <div class="dropdown-content">
+            <a href="{{url_for('get_weather')}}">Search Weather</a>
           </div>
         </div>
-      </nav>
-    </div>
-  </div>
+
+        <div class="dropdown">
+          <button class="dropbtn">Music
+          </button>
+          <div class="dropdown-content">
+            <a href="{{url_for('play_artist')}}">Artists</a>
+            <a href="{{url_for('test')}}">Albums</a>
+          </div>
+        </div>
+      </div>
+    </nav>
   </div>
 
 
@@ -43,9 +48,13 @@
 
     <div class="section-flex">
       <div class="section-design">
-        <div id="item1"> <h2>About me:</h2> </div>
-        <div id="item2"> <p>𝘚𝘰𝘮𝘦 𝘰𝘧 𝘮𝘺 𝘧𝘢𝘷𝘰𝘳𝘪𝘵𝘦 𝘵𝘩𝘪𝘯𝘨𝘴 𝘵𝘰 𝘥𝘰 𝘢𝘳𝘦 𝘱𝘳𝘰𝘨𝘳𝘢𝘮𝘮𝘪𝘯𝘨, 𝘨𝘢𝘮𝘪𝘯𝘨,
-            𝘭𝘪𝘴𝘵𝘦𝘯𝘪𝘯𝘨 𝘵𝘰 𝘮𝘶𝘴𝘪𝘤, playing 𝘣𝘢𝘴𝘬𝘦𝘵𝘣𝘢𝘭𝘭... </p> </div>
+        <div id="item1">
+          <h2>About me:</h2>
+        </div>
+        <div id="item2">
+          <p>𝘚𝘰𝘮𝘦 𝘰𝘧 𝘮𝘺 𝘧𝘢𝘷𝘰𝘳𝘪𝘵𝘦 𝘵𝘩𝘪𝘯𝘨𝘴 𝘵𝘰 𝘥𝘰 𝘢𝘳𝘦 𝘱𝘳𝘰𝘨𝘳𝘢𝘮𝘮𝘪𝘯𝘨, 𝘨𝘢𝘮𝘪𝘯𝘨,
+            𝘭𝘪𝘴𝘵𝘦𝘯𝘪𝘯𝘨 𝘵𝘰 𝘮𝘶𝘴𝘪𝘤, playing 𝘣𝘢𝘴𝘬𝘦𝘵𝘣𝘢𝘭𝘭... </p>
+        </div>
         <div id="item3"> <button>Learn More</button> </div>
       </div>
     </div>
@@ -64,6 +73,14 @@
         <p>My favorite project that is on GitHub:</p>
         <button>Learn More</button>
       </div>
+    </div>
+  </div>
+  <div id="flex-footer">
+    <div id="github">
+      <p>GitHub</p>
+    </div>
+    <div id="instagram">
+      <p>Instagram</p>
     </div>
   </div>
 </body>
