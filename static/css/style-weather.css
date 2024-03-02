@@ -27,11 +27,11 @@ body {
 .navbarContainer {
   /*Container navigacije za odlazak na druge stranice */
   display: inline-flex;
+  position: absolute;
   align-items: center;
-  flex-direction: row-reverse;
-  flex-wrap: nowrap;
-  margin: 10px;
-  padding: 20px;
+  flex-direction: row;
+  margin-block-end: 50%;
+  left: 745px;
 }
 
 .flex-container {
@@ -44,7 +44,8 @@ body {
   position: absolute;
   margin-inline: 50%;
   margin-block: auto;
-  top: 35%;
+  top: 200px;
+  left: -100px;
   font: 1em sans-serif;
   font-style: oblique;
   border-radius: 0.53%;
@@ -52,20 +53,24 @@ body {
   border-color: red;
   box-shadow: 0 0 0 10px #ccc, 0 0 0 20px #fff;
 }
-.flex-containerat-root .flex-item2,
-.flex-containerat-root .flex-item1,
-.flex-containerat-root .flex-item3,
-.flex-containerat-root .flex-item4 {
+.flex-container .flex-item1 {
+  flex-direction: directionForflexItems;
+  padding: 0.2%;
+  color: red;
+  margin: 1%;
+}
+.flex-container .flex-item3, .flex-container .flex-item4,
+.flex-container .flex-item2 {
   flex-direction: directionForflexItems;
   padding: 0.2%;
   -webkit-text-fill-color: white;
-  margin: 1%;
 }
 .flex-container .flex-item5 {
   flex-direction: directionForflexItems;
   padding: 0.2%;
   -webkit-text-fill-color: black;
   margin: 1%;
+  text-align: center;
 }
 .flex-container .flex-item6 {
   flex-direction: directionForflexItems;
@@ -73,4 +78,13 @@ body {
   -webkit-text-fill-color: white;
   margin: 1%;
   text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .navbarContainer {
+    display: inline-block;
+    width: 100%;
+    top: 43px;
+    left: auto;
+  }
 }/*# sourceMappingURL=style-weather.css.map */

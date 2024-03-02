@@ -1,4 +1,6 @@
 
+$bgimage: url('static/images/red.jpg');
+
 body {
   background: black;
   cursor: default;
@@ -7,6 +9,12 @@ body {
 
 span {
   color: darkmagenta;
+  font-weight: bolder;
+  text-shadow: none;
+}
+
+#span1 {
+  color: green;
   font-weight: bolder;
   text-shadow: none;
 }
@@ -23,7 +31,7 @@ h1 {
 }
 
 h2 {
-  color:#2980b9
+  color: #2980b9;
 }
 
 h3 {
@@ -33,10 +41,18 @@ h3 {
 
 }
 
-p {
-  color: #555;
+h4 {
+  color: darkmagenta;
+  font-size: 26px;
+  position: absolute;
+  top: 15%;
+  left: 25%;
 }
 
+p {
+  color: black;
+  font: 1rem sans-serif;
+}
 
 .navbarContainer {
   background-color: none;
@@ -53,7 +69,7 @@ p {
 .navbar {
   background-color: none;
   text-align: center;
-  width: 650px;
+  width: auto;
   font-weight: bolder;
   -webkit-text-fill-color: whitesmoke;
   -webkit-text-size-adjust: initial;
@@ -68,7 +84,7 @@ p {
     padding: 14px 16px;
     margin: 0 14px;
     text-decoration: none;
-    
+
   }
 }
 
@@ -101,12 +117,14 @@ p {
 
   100% {
     transform: scale(1.69, 1.69);
+    -webkit-text-stroke: 1.09px red;
+    -webkit-text-stroke-color:#2980b9
   }
 }
 
 .navbar {
-  a:hover,
-  .dropdown:hover .dropbtn {
+  .dropdown:hover .dropbtn,
+  a:hover {
     background-color: none;
     animation-name: zoomInTextNavbar;
     animation-duration: 2s;
@@ -116,9 +134,8 @@ p {
   }
 }
 
-
 .dropdown-content {
-  display:none;
+  display: none;
   position: absolute;
   min-width: 160px;
   z-index: 1;
@@ -135,13 +152,18 @@ p {
     margin-inline: auto;
   }
 }
-
 @keyframes FillwColorDropdownContentHover {
-  0% { background-color: red; }
+  0% {
+    background-color: rgb(15, 69, 126);
+  }
 
-  50% { background-color: gray; }
+  50% {
+    background-color: gray;
+  }
 
-  100% {  background-color: violet; }
+  100% {
+    background-color: violet;
+  }
 }
 
 .dropdown-content {
@@ -166,9 +188,9 @@ p {
 }
 
 .section-content {
-  background-color: #fff;
+  background-color: rgb(32, 2, 2);
   border-radius: 8px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0.9px 0.9px 20px white;
   padding: 20px;
 }
 
@@ -182,8 +204,8 @@ button {
   font-size: 16px;
   transition: background-color .3s ease-in-out;
 
-  :hover {
-    background-color: #2980b9;
+  &:hover {
+    background-color: darkblue;
   }
 }
 
@@ -215,4 +237,82 @@ footer {
   background-attachment: fixed;
   background-size: cover;
 
+}
+@keyframes pulsingBackground {
+  0% {
+    background-color: #000;
+  }
+
+  50% {
+    background-color: #1c052e;
+  }
+
+  100% {
+    background-color: #000;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .header,
+  body {
+    animation-name: pulsingBackground;
+    animation-duration: 10s;
+    animation-delay: 500ms;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+
+    & .header {
+      animation-delay: 1250ms;
+    }
+  }
+
+  h1 {
+    top: auto;
+    left: auto;
+  }
+
+  h4 {
+    top: 15%;
+    left: 15%;
+  }
+
+  p {
+    color: white;
+  }
+
+  .navbarContainer {
+    display: inline-block;
+    -webkit-box-align: center;
+    padding-top: .1px;
+    min-height: 25px;
+    width: 100%;
+    background-image: $bgimage;
+    box-shadow: .7px .7px rgb(40, 2, 2);
+  }
+
+  .section-content {
+    background-color: black;
+  }
+
+  .parallax {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: $bgimage no-repeat 100%;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    transform: translateZ(0);
+  }
+}
+@media only screen and (min-width:601px) and (max-width:800px) {
+  .navbarContainer {
+    display: inline-block;
+    -webkit-box-align: center;
+    padding-top: .1px;
+    min-height: 25px;
+    width: 100%;
+    background-image: $bgimage;
+    box-shadow: .7px .7px;
+  }
 }

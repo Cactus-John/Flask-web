@@ -3,7 +3,7 @@ $bodycolor: black;
 $textColorForFlexItems: white;
 $h1fontSize: 32px;
 /*Velicina fonta za h1 spremljena u varijablu */
-$h1color: magenta;
+$h1color: red;
 /*Boja fonta za h1 spremljena u varijablu */
 $h1fontWeight: bolder;
 /*Debljina fonta za h1 spremljena u varijablu */
@@ -40,11 +40,13 @@ body {
 .navbarContainer {
   /*Container navigacije za odlazak na druge stranice */
   display: inline-flex;
+  position: absolute;
   align-items: center;
-  flex-direction: row-reverse;
-  flex-wrap: nowrap;
-  margin: 10px;
-  padding: 20px;
+  flex-direction: row;
+  margin-block-end: 50%;
+
+  left:745px;
+
 }
 
 .flex-container {
@@ -57,7 +59,8 @@ body {
   position: absolute;
   margin-inline: 50%;
   margin-block: auto;
-  top: 35%;
+  top: 200px;
+  left: -100px;
   font: 1em sans-serif;
   font-style: oblique;
   border-radius: .53%;
@@ -65,17 +68,19 @@ body {
   border-color: red;
   box-shadow: 0 0 0 10px #ccc, 0 0 0 20px #fff;
 
-  &at-root {
-    .flex-item2,
-    .flex-item1,
-    .flex-item3,
-    .flex-item4 {
+  .flex-item1 {
+    flex-direction: directionForflexItems;
+    padding: $paddingForFlexItems;
+    color: $h1color;
+    margin: 1%;
+  }
 
-      flex-direction: directionForflexItems;
-      padding: $paddingForFlexItems;
-      -webkit-text-fill-color: white;
-      margin: 1%;
-    }
+  & .flex-item3,
+  & .flex-item4,
+  .flex-item2 {
+    flex-direction: directionForflexItems;
+    padding: $paddingForFlexItems;
+    -webkit-text-fill-color: white;
   }
 
   .flex-item5 {
@@ -83,6 +88,7 @@ body {
     padding: $paddingForFlexItems;
     -webkit-text-fill-color: black;
     margin: 1%;
+    text-align: center;
   }
 
   .flex-item6 {
@@ -92,4 +98,13 @@ body {
     margin: 1%;
     text-align: center;
   }
+}
+@media only screen and (max-width:600px) {
+  .navbarContainer {
+    display: inline-block;
+    width: 100%;
+    top: 43px;
+    left:auto;
+  }
+
 }
