@@ -34,6 +34,14 @@ def get_weather():
         feels_like=f"{weather_data['main']['feels_like']:.1f}"
     )
 
+@app.route('/artists')
+def proba():
+    return render_template('artists.html')
+
+@app.route('/albums')
+def test():
+    return render_template('albums.html')
+
 if __name__ == "__main__":
     serve(app, host="0.0.0.0", port=8000)
     app.run(debug=True)

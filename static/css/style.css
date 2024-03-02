@@ -47,8 +47,8 @@ h4 {
 }
 
 p {
-  color: black;
-  font: 1rem sans-serif;
+  color: white;
+  font: 0.8rem sans-serif;
 }
 
 .navbarContainer {
@@ -145,20 +145,13 @@ p {
   display: block;
 }
 
-.cool-section {
-  padding: 50px;
-  text-align: center;
-}
-
-.section-content {
-  background-color: rgb(32, 2, 2);
-  border-radius: 8px;
-  box-shadow: 0.9px 0.9px 20px white;
-  padding: 20px;
-}
-
 button {
+  background-color: #2980b9;
+  border-radius: 0.2%;
   cursor: grab;
+}
+button :hover {
+  text-shadow: 2px 2px 14px red;
 }
 
 footer {
@@ -190,10 +183,26 @@ footer {
   background-size: cover;
 }
 
-.flex-section {
+.section-flex-container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  flex-direction: row;
+}
+
+.section-flex {
+  padding: 50px;
+}
+.section-flex #item1 {
+  color: red;
+  -webkit-text-fill-color: red;
+}
+
+.section-design {
+  background-color: rgb(32, 2, 2);
+  border-radius: 8px;
+  box-shadow: 0.9px 0.9px 20px white;
+  padding: 25px;
 }
 
 @keyframes pulsingBackground {
@@ -256,7 +265,7 @@ footer {
     background-color: black;
   }
   .flex-section {
-    display: inline-block;
+    display: block;
   }
   .parallax {
     top: 0;
