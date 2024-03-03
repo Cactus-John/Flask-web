@@ -1,9 +1,11 @@
+<!-- artists_audio.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/css/style-artists.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles-artists.css') }}">
     <title>Document</title>
 
     <script>
@@ -15,30 +17,42 @@
 
 </head>
 <body>
-    <!--TS i TW = dizajnirat sa sekcijaama (lijevo 1, desno 1)-->
-    <!--Stavit osnovnih 5-10 pjesama za svakog-->
     <h1>Artist</h1>
-    
-    <ul>
-        {% for song in songs %}
-            <li>{{ song }}</li>
-        {% endfor %}
-    </ul>
 
-    <form id="playForm" method="post" action="/artists">
-        <label for="song_select">Select a Song:</label>
-        <select id="song_select" name="selected_song">
+    <!-- <div id = "left-section">
+
+    </div>
+
+    <div id = "right-section">
+
+    </div> -->
+
+    <form id="playForm" action="/artists" method="POST">
+        <select name="selected_song">
             {% for song in songs %}
-                <option value="{{ song }}">{{ song }}</option>
+            <option value="{{ song }}">{{ song }}</option>
             {% endfor %}
         </select>
         <button type="button" onclick="togglePlayPause()">Play/Pause</button>
-        <!--<button type="submit">Play/Stop</button>-->
+        <button type="submit" name="restart" value="true">Restart</button>
+
         {% if current_song_name %}
-            <p>Currently Playing: {{ current_song_name }}</p>
+        <p>Currently Playing: {{ current_song_name }}</p>
         {% else %}
-            <p>No song currently playing</p>
+        <p>No song currently playing</p>
         {% endif %}
     </form>
+
+    <ul>
+        {% for song in songs %}
+            <li>
+                {{ song }}
+                <audio controls="true">
+                    <source src="{{ url_for('static', filename='songs/' + song) }}" type="audio/mpeg">
+                    
+                </audio>
+            </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

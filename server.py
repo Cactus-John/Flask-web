@@ -14,14 +14,17 @@ def home():
 
 def get_weather():
     city = request.args.get('city')
+    
     # Handlea prazan string ili razmake
     if city is not None and not bool(city.strip()):
+
         city = "Samobor"
 
     weather_data = get_current_weather(city)
     
     # Handlea error 404 (city not found); 200 -> success
     if not weather_data['cod'] == 200:
+
         return render_template('city_not_found.html')
 
     return render_template (
@@ -34,17 +37,20 @@ def get_weather():
     )
 
 currently_playing = None
+currently_playing_name = None
 is_paused = False
 
 def play_song(song_path):
     pygame.mixer.init()
 
     try:
+
         print(f"Playing song: {song_path}")
         pygame.mixer.music.load(song_path)
         pygame.mixer.music.play()
 
     except pygame.error as e:
+
         print(f"Error playing song: {e}")
 
 
@@ -52,38 +58,52 @@ def play_song(song_path):
 
 def play_artist():
     global currently_playing, is_paused
+
     songs = ["LilUziVert_XO_tour_life.mp3",
              "LilUziVert_20_Min.mp3",
              "LilUziVert_That_Way.mp3"]
 
-    
     if request.method == 'POST':
-        selected_song = request.form.get('selected_song')
-        song_path = f"static/songs/{selected_song}" 
 
-        if currently_playing and currently_playing.lower() == song_path.lower():
+        selected_song = request.form.get('selected_song')
+        song_path = f"static/songs/{selected_song.strip()}"
+
+        if request.form.get('restart') == 'true':
             
+            #restartaj pjsemu ispocetka ako stisne restart button
+            if currently_playing:
+
+                pygame.mixer.music.rewind()
+                pygame.mixer.music.play()
+                is_paused = False
+                return render_template('artists.html', songs=songs, current_song_name=selected_song)
+
+        if currently_playing and currently_playing == song_path:
+            
+            #play i pause
             if is_paused:
+
                 pygame.mixer.music.unpause()
                 is_paused = False
-                return f"Resumed playing: {selected_song}"
+                return render_template('artists.html', songs=songs, current_song_name=selected_song)
             
             else:
+
                 pygame.mixer.music.pause()
                 is_paused = True
-                return f"Paused: {selected_song}"
-        
+                return render_template('artists.html', songs=songs, current_song_name=selected_song)
         else:
-            # Ako je selektirana druga pjesma, zaustavi ovu trenutnu
+        
             if currently_playing:
                 pygame.mixer.music.stop()
+
             play_song(song_path)
             currently_playing = song_path
             is_paused = False
-            #return f"Playing: {selected_song}" 
-            current_song_name = selected_song    
+            return render_template('artists.html', songs=songs, current_song_name=selected_song)
         
-    return render_template('artists.html', songs=songs)
+    return render_template('artists.html', songs=songs, current_song_name=None)
+
 
 @app.route('/albums')
 

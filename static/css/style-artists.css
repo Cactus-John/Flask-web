@@ -1,3 +1,47 @@
 body {
-  background-color: black;
+  background-color: rgb(69, 57, 35);
+}
+
+audio {
+  width: 200px;
+  height: 25px;
+  background-color: #333;
+}
+audio ::-webkit-media-controls-panel {
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+}
+audio ::-webkit-media-controls-pause-button,
+audio ::-webkit-media-controls-play-button {
+  background-color: #3498db;
+  color: #fff;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+}
+audio ::-webkit-media-controls-timeline {
+  background-color: #ecf0f1;
+  height: 5px;
+}
+audio ::-webkit-media-controls-volume-slider {
+  background-color: #ecf0f1;
+  width: 80px;
+}
+audio ::-webkit-media-controls-current-time-display,
+audio ::-webkit-media-controls-time-remaining-display {
+  color: #333;
+  font-size: 14px;
+}
+
+#container {
+  color: black;
+}
+
+#left-section {
+  display: flex;
+}
+
+#right-section {
+  display: flex;
 }/*# sourceMappingURL=style-artists.css.map */

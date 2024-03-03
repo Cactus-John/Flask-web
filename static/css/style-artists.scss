@@ -1,4 +1,52 @@
+body {
+  background-color: rgb(69, 57, 35);
+}
 
-body{
-    background-color: black;
+audio {
+  width: 200px;
+  height: 25px;
+  background-color: #333;
+
+  ::-webkit-media-controls-panel {
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  ::-webkit-media-controls-pause-button,
+  ::-webkit-media-controls-play-button {
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+  }
+
+  ::-webkit-media-controls-timeline {
+    background-color: #ecf0f1;
+    height: 5px;
+  }
+
+  ::-webkit-media-controls-volume-slider {
+    background-color: #ecf0f1;
+    width: 80px;
+  }
+
+  ::-webkit-media-controls-current-time-display,
+  ::-webkit-media-controls-time-remaining-display {
+    color: #333;
+    font-size: 14px;
+  }
+}
+
+#container {
+  color: black;
+}
+
+#left-section {
+  display: flex;
+}
+
+#right-section {
+  display: flex;
 }
