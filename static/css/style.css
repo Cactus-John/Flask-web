@@ -214,39 +214,36 @@ footer {
 }
 /* MOBITEL/PHONE VIEW  - 900px screen size */
 @media only screen and (max-width: 900px) {
-  .header,
-  body {
-    animation-name: pulsingBackground;
-    animation-duration: 10s;
-    animation-delay: 500ms;
-    animation-iteration-count: infinite;
-    animation-fill-mode: both;
-  }
-  .header .header,
-  body .header {
-    animation-delay: 1250ms;
-  }
   h1 {
-    top: auto;
-    left: auto;
-  }
-  h4 {
     font-size: medium;
-    top: 150px;
+    top: 188px;
     left: 40px;
     right: 40px;
+  }
+  h4 {
+    top: 405px;
+    left: 111px;
   }
   p {
     color: white;
   }
-  .navbarContainer {
-    display: inline-block;
-    overflow: hidden;
-    position: relative;
-    top: auto;
-    bottom: 200px;
-    margin-block-start: 5px;
+  img {
     width: auto;
+    height: 60%;
+  }
+  span {
+    color: darkmagenta;
+    font-weight: bolder;
+    text-shadow: 3px 3px 6px magenta;
+    filter: blur(1.2px);
+  }
+  .navbarContainer {
+    display: flex;
+    position: absolute;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    top: 50px;
+    left: 50px;
   }
   .navbar .dropdown:hover .dropbtn,
   .navbar a:hover {
