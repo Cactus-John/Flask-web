@@ -81,10 +81,9 @@ def play_artist():
             currently_playing = song_path
             is_paused = False
             #return f"Playing: {selected_song}" 
-            current_song_name = selected_song
-            return render_template('artists.html', songs=songs, current_song_name=current_song_name)
+            current_song_name = selected_song    
         
-    return render_template('artists.html', songs=songs, current_song_name=current_song_name)
+    return render_template('artists.html', songs=songs)
 
 @app.route('/albums')
 
@@ -92,5 +91,5 @@ def test():
     return render_template('albums.html')
 
 if __name__ == "__main__":
-    serve(app, host="0.0.0.0", port=8000)
+    #serve(app, host="0.0.0.0", port=8000)
     app.run(debug=True)
