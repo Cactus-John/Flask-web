@@ -71,14 +71,18 @@ def play_artist():
              "LilUziVert_20_Min.mp3",
              "LilUziVert_That_Way.mp3",
              "LilUziVert_Flooded_The_Face.mp3",
-             "LilUziVert_Erase_Your_Social.mp3"]
+             "LilUziVert_Erase_Your_Social.mp3",
+             "LilUziVert_Aye.mp3",
+             "LilUziVert_Pluto_to_Mars.mp3"]
     
     album_art = {
         songs[0]: album_image_path[0],
         songs[1]: album_image_path[0],
         songs[2]: album_image_path[0],
         songs[3]: album_image_path[1],
-        songs[4]: album_image_path[2]
+        songs[4]: album_image_path[2],
+        songs[5]: album_image_path[1],
+        songs[6]: album_image_path[1]
     }
 
     def get_album_image(song_name):
@@ -97,7 +101,7 @@ def play_artist():
 
         pygame.init()
         pygame.mixer.init()
-
+        
         if request.form.get('play') == 'Play':
 
             # provjera ako muzika jos nije playana
@@ -108,15 +112,6 @@ def play_artist():
                 is_playing = True
                 is_paused = False
             
-        elif request.form.get('pause') == 'Pause':
-
-            # pauza ako muzika playa i nije pauza
-            
-            if is_playing and not is_paused:  
-                pygame.mixer.music.pause()
-                is_paused = True
-                
-
         if request.form.get('restart') == 'true':
             
             #restartaj pjsemu ispocetka na restart 
@@ -162,16 +157,8 @@ def play_artist():
                                     songs=songs, 
                                     current_song_name=selected_song,
                                     album_image_path=album_image_path)
-            
-        
-    #if song_path:
-    #   sound = pygame.mixer.Sound(song_path)
-    #   total_duration = sound.get_length()
-    #else:
-    #   total_duration = 0.0
-
-    #song_position = pygame.mixer.music.get_pos() / 1000.0  # milliseconds to seconds
-        
+    
+    
     return render_template('artists.html', 
                            songs=songs, 
                            current_song_name=None,

@@ -8,6 +8,8 @@ body {
 }
 
 h1 {
+  color: wheat;
+  text-shadow: 3px 3px 5px wheat;
   position: absolute;
   top:5%;
 }
@@ -19,15 +21,14 @@ nav {
   position: absolute;
   top: 8%;
   left: 5%;
-}
 
-a {
-  text-decoration: none;
-  color:black;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: larger;
-  font-weight: bolder;
-  text-shadow: 5px 5px 8px red;
+  a {
+    text-decoration: none;
+    text-shadow: 5px 5px 8px black;
+    position: absolute;
+    top: auto;
+    left: auto;
+  }
 }
 
 .album-art {
@@ -49,7 +50,7 @@ a {
   position: relative;
   top: auto;
   right: 5px;
-  outline: 3px solid yellow;
+  outline: 3px dashed yellow;
 }
 
 
@@ -58,7 +59,7 @@ a {
 #form-container {
   display: flex;
   flex-direction: row;
-  justify-content:space-between;
+  justify-content: space-between;
   position: absolute;
   top: 10%;
   left: 15%;
@@ -110,6 +111,12 @@ a {
   border-left: none;
 }
 
+#button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
 select {
   padding: 10px;
   font-size: 16px;
@@ -127,6 +134,7 @@ select {
 @media only screen and (max-width:900px) {
 
   #form-container {
+    position:absolute;
     top:15%;
     left: 24%;
     right: auto;
@@ -154,6 +162,6 @@ select {
     bottom: 40px;
   }
   option {
-    max-width: 50px;
+    max-width: 40px;
   }
 }

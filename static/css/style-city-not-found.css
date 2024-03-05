@@ -5,6 +5,8 @@ body {
 h4 {
   color: aqua;
   position: relative;
+  top: auto;
+  left: 1%;
 }
 
 .form-container {
@@ -29,15 +31,9 @@ h4 {
 
 @media only screen and (max-width: 900px) {
   .form-container {
-    position: fixed;
-    display: inline-flex;
-    flex-direction: column;
-    margin-block-start: 180px;
-    margin-inline-start: 20px;
-    padding: 10px;
-    border-radius: 8px;
-    background-color: rgb(61, 7, 61);
-    box-shadow: 0.9px 0.9px 20px black;
-    padding: 25px;
+    position: relative;
+    margin-block-start: auto;
+    margin-inline-start: auto;
+    left: 50px;
   }
 }/*# sourceMappingURL=style-city-not-found.css.map */

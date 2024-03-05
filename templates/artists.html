@@ -12,16 +12,14 @@
             var form = document.getElementById('playForm');
             form.submit();
         }
-
-        function changeColor(playButton, color) {
-            playButton.style.color = color;
-        }
     </script>
 </head>
 
 <body>
     <nav>
-        <a href="{{url_for('home')}}">Home</a>
+        <a href="{{url_for('home')}}">
+            <i class="fa-solid fa-house-user fa-2xl" style="color: #fe10be;"></i>
+        </a>
     </nav>
 
     <h1>Welcome! <br>
@@ -35,8 +33,6 @@
         <div id="left-side">
             <form method="post" action="/artists">
 
-
-
                 <select name="selected_song">
                     {% for song in songs %}
                     <option value="{{ song }}" {% if song==current_song_name %} selected {% endif %}>{{
@@ -44,24 +40,25 @@
                         }}</option>
                     {% endfor %}
                 </select>
-                <div id="item2">
-                    <button class="invisible-button" type="submit" name="play" value="Play">
-                        <i class="fa-solid fa-circle-play fa-2xl" style="color: #fe10bf;"></i>
-                    </button>
-                </div>
+                <div id="button-container">
+                    <div id="item2">
+                        <button class="invisible-button" type="submit" name="play" value="Play">
+                            <i class="fa-solid fa-circle-play fa-2xl" style="color: #fe10bf;"></i>
+                        </button>
+                    </div>
 
-                <div id="item3">
-                    <button class="invisible-button" type="submit" name="pause" value="Pause">
-                        <i class="fa-solid fa-circle-pause fa-2xl" style="color: #fe10bf;"></i>
-                    </button>
-                </div>
+                    <div id="item3">
+                        <button class="invisible-button" type="submit" name="pause" value="Pause">
+                            <i class="fa-solid fa-circle-pause fa-2xl" style="color: #fe10bf;"></i>
+                        </button>
+                    </div>
 
-                <div id="item4">
-                    <button class="invisible-button" type="submit" name="restart" value="true">
-                        <i class="fa-solid fa-rotate-right fa-2xl" style="color: #fe10bf;"></i>
-                    </button>
+                    <div id="item4">
+                        <button class="invisible-button" type="submit" name="restart" value="true">
+                            <i class="fa-solid fa-rotate-right fa-2xl" style="color: #fe10bf;"></i>
+                        </button>
+                    </div>
                 </div>
-
             </form>
         </div>
     </div>
