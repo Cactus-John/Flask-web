@@ -32,21 +32,20 @@
             <div id="refresh-button"><button type="submit">Refresh</button></div>
             </form> 
         -->
+        <div id="left-side">
+            <form method="post" action="/artists">
 
-        <form method="post" action="/artists">
 
-            <div id="left-side">
-                
-                    <select name="selected_song">
-                        {% for song in songs %}
-                        <option value="{{ song }}" {% if song==current_song_name %} selected {% endif %}>{{
-                            song.split('.')[0]
-                            }}</option>
-                        {% endfor %}
-                    </select>
+
+                <select name="selected_song">
+                    {% for song in songs %}
+                    <option value="{{ song }}" {% if song==current_song_name %} selected {% endif %}>{{
+                        song.split('.')[0]
+                        }}</option>
+                    {% endfor %}
+                </select>
                 <div id="item2">
-                    <button class="invisible-button" onclick="changeColor(this, 'red')" type="submit" name="play"
-                        value="Play">
+                    <button class="invisible-button" type="submit" name="play" value="Play">
                         <i class="fa-solid fa-circle-play fa-2xl" style="color: #fe10bf;"></i>
                     </button>
                 </div>
@@ -62,17 +61,18 @@
                         <i class="fa-solid fa-rotate-right fa-2xl" style="color: #fe10bf;"></i>
                     </button>
                 </div>
-            </div>
-        </form>
+
+            </form>
+        </div>
     </div>
     {% if current_song_name %}
 
-    <div id="song-container"> 
+    <div id="song-container">
         <h2>Now Playing: {{ current_song_name.split('.')[0] }}</h2>
         <img class="album-art" src="{{ url_for('static', filename=album_image_path) }}" alt="Album Cover">
 
         <!-- Display song duration -->
-        
+
     </div>
 
     {% endif %}
