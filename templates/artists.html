@@ -1,60 +1,82 @@
-<!-- artists_audio.html -->
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles-artists.css') }}">
-    <title>Document</title>
-
+    <title>Custom Music Player</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style-artists.css') }}">
+    <script src="https://kit.fontawesome.com/6b0ea6f5c6.js" crossorigin="anonymous"></script>
     <script>
         function togglePlayPause() {
             var form = document.getElementById('playForm');
             form.submit();
         }
+
+        function changeColor(playButton, color) {
+            playButton.style.color = color;
+        }
     </script>
-
 </head>
+
 <body>
-    <h1>Artist</h1>
+    <nav>
+        <a href="{{url_for('home')}}">Home</a>
+    </nav>
 
-    <a href = "{{url_for('home')}}">Home</a>
+    <h1>Welcome! <br>
+        Enjoy listening to some of my favorite songs</h1>
 
-    <!-- <div id = "left-section">
+    <div id="form-container">
+        <!-- <form action="" method="get">
+            <div id="refresh-button"><button type="submit">Refresh</button></div>
+            </form> 
+        -->
 
+        <form method="post" action="/artists">
+
+            <div id="left-side">
+                
+                    <select name="selected_song">
+                        {% for song in songs %}
+                        <option value="{{ song }}" {% if song==current_song_name %} selected {% endif %}>{{
+                            song.split('.')[0]
+                            }}</option>
+                        {% endfor %}
+                    </select>
+                <div id="item2">
+                    <button class="invisible-button" onclick="changeColor(this, 'red')" type="submit" name="play"
+                        value="Play">
+                        <i class="fa-solid fa-circle-play fa-2xl" style="color: #fe10bf;"></i>
+                    </button>
+                </div>
+
+                <div id="item3">
+                    <button class="invisible-button" type="submit" name="pause" value="Pause">
+                        <i class="fa-solid fa-circle-pause fa-2xl" style="color: #fe10bf;"></i>
+                    </button>
+                </div>
+
+                <div id="item4">
+                    <button class="invisible-button" type="submit" name="restart" value="true">
+                        <i class="fa-solid fa-rotate-right fa-2xl" style="color: #fe10bf;"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% if current_song_name %}
+
+    <div id="song-container"> 
+        <h2>Now Playing: {{ current_song_name.split('.')[0] }}</h2>
+        <img class="album-art" src="{{ url_for('static', filename=album_image_path) }}" alt="Album Cover">
+
+        <!-- Display song duration -->
+        
     </div>
 
-    <div id = "right-section">
+    {% endif %}
 
-    </div> -->
-
-    <form id="playForm" action="/artists" method="POST">
-        <select name="selected_song">
-            {% for song in songs %}
-            <option value="{{ song }}">{{ song }}</option>
-            {% endfor %}
-        </select>
-        <button type="button" onclick="togglePlayPause()">Play/Pause</button>
-        <button type="submit" name="restart" value="true">Restart</button>
-
-        {% if current_song_name %}
-        <p>Currently Playing: {{ current_song_name }}</p>
-        {% else %}
-        <p>No song currently playing</p>
-        {% endif %}
-    </form>
-
-    <ul>
-        {% for song in songs %}
-            <li>
-                {{ song }}
-                <audio controls="true">
-                    <source src="{{ url_for('static', filename='songs/' + song) }}" type="audio/mpeg">
-                    
-                </audio>
-            </li>
-        {% endfor %}
-    </ul>
 </body>
+
 </html>

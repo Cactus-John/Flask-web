@@ -1,52 +1,159 @@
 body {
-  background-color: rgb(69, 57, 35);
-}
-
-audio {
-  width: 200px;
-  height: 25px;
-  background-color: #333;
-
-  ::-webkit-media-controls-panel {
-    background-color: #f1f1f1;
-    border-radius: 5px;
-    padding: 10px;
-  }
-
-  ::-webkit-media-controls-pause-button,
-  ::-webkit-media-controls-play-button {
-    background-color: #3498db;
-    color: #fff;
-    border-radius: 50%;
-    padding: 5px;
-    cursor: pointer;
-  }
-
-  ::-webkit-media-controls-timeline {
-    background-color: #ecf0f1;
-    height: 5px;
-  }
-
-  ::-webkit-media-controls-volume-slider {
-    background-color: #ecf0f1;
-    width: 80px;
-  }
-
-  ::-webkit-media-controls-current-time-display,
-  ::-webkit-media-controls-time-remaining-display {
-    color: #333;
-    font-size: 14px;
-  }
-}
-
-#container {
-  color: black;
-}
-
-#left-section {
+  background-color: rgb(148, 101, 109);
   display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
-#right-section {
+h1 {
+  position: absolute;
+  top:5%;
+}
+
+nav {
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  position: absolute;
+  top: 8%;
+  left: 5%;
+}
+
+a {
+  text-decoration: none;
+  color:black;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: larger;
+  font-weight: bolder;
+  text-shadow: 5px 5px 8px red;
+}
+
+.album-art {
+  width: auto;
+  height: auto;
+  box-shadow: 5px 5px 10px red;
+  filter: drop-shadow(16px 16px 10px black);
+}
+
+#refresh-button {
+  display: block;
+  position: relative;
+  bottom: 60px;
+  left: 5;
+}
+
+#left-side {
+  display: grid;
+  position: relative;
+  top: auto;
+  right: 5px;
+  outline: 3px solid yellow;
+}
+
+
+/* #left-side i #form-conatiner skupa postavit na lijevu marginu i odvojit stranicu na pola*/
+
+#form-container {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+  position: absolute;
+  top: 10%;
+  left: 15%;
+
+  #item1 {
+    top:auto;
+  }
+
+  #item2, 
+  #item3,
+  #item4 {
+    padding: 20px;
+    border: 3px solid yellow;
+  }
+}
+
+#song-container {
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  top: auto;
+  left: 40%;
+
+  h2 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: larger;
+    color: rgb(230, 2, 255);
+    font-weight: bolder;
+    text-shadow: 10px 10px 8px black;
+    filter: drop-shadow(5px 5px 10px black);
+  }
+
+  /*#position1,
+  #position2,
+  #position3,
+  #position4,
+  #position5 {
+    flex: 1;
+    
+    outline: 3px solid yellow;
+  } */
+}
+
+.invisible-button {
+  background-color: rgb(148, 101, 109);
+  border: none;
+  border-left: none;
+}
+
+select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white; /* Set background color */
+  color: #333; /* Set text color */
+
+  option {
+    background-color: pink; 
+    color: #333; 
+  }
+}
+
+@media only screen and (max-width:900px) {
+
+  #form-container {
+    top:15%;
+    left: 24%;
+    right: auto;
+    width: 100%;
+  }
+
+  nav {
+    top: 5%;
+    bottom: auto;
+    left: auto;
+  }
+
+  h1 {
+    font-size: 20px;
+    bottom: auto;
+  }
+
+  button {
+    width: 100%;
+    height: auto;
+  }
+
+  #song-container {
+    left: auto;
+    bottom: 40px;
+  }
+  option {
+    max-width: 50px;
+  }
 }
