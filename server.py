@@ -54,7 +54,7 @@ def play_song(song_path):
         print(f"Error playing song: {e}")
 
 
-@app.route('/artists', methods=['GET', 'POST'])
+@app.route('/artists', methods=['POST'])
 
 def play_artist():
 
@@ -126,10 +126,7 @@ def play_artist():
                 pygame.mixer.music.rewind()
                 pygame.mixer.music.play()
                 is_paused = False
-                return render_template('artists.html', 
-                                       songs=songs, 
-                                       current_song_name=selected_song,
-                                       album_image_path=album_image_path)
+               
 
         if currently_playing and currently_playing == song_path:
             
@@ -139,20 +136,12 @@ def play_artist():
 
                 pygame.mixer.music.unpause()
                 is_paused = False
-                return render_template('artists.html', 
-                                       songs=songs, 
-                                       current_song_name=selected_song,
-                                       album_image_path=album_image_path)
-            
+               
             else:
 
                 pygame.mixer.music.pause()
                 is_paused = True
-                return render_template('artists.html', 
-                                       songs=songs, 
-                                       current_song_name=selected_song,
-                                       album_image_path=album_image_path)
-            
+                
         else:
         
             if currently_playing:
@@ -161,10 +150,7 @@ def play_artist():
             play_song(song_path)
             currently_playing = song_path
             is_paused = False
-            return render_template('artists.html', 
-                                   songs=songs, 
-                                   current_song_name=selected_song,
-                                   album_image_path=album_image_path)
+            
         
     #if song_path:
     #   sound = pygame.mixer.Sound(song_path)
