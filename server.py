@@ -171,5 +171,10 @@ def test():
     return render_template('albums.html')
 
 if __name__ == "__main__":
+<<<<<<< HEAD
     #serve(app, host="0.0.0.0", port=8000)
     app.run(host="0.0.0.0", port=5000, debug=True)
+=======
+    serve(app, host="0.0.0.0", port=8000)
+    app.run(debug=True)
+>>>>>>> 5d1782cd28a955f8ec27e475e9d2064b5fe69968
