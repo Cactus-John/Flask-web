@@ -37,8 +37,8 @@ def get_weather():
     )
 
 currently_playing = None
-currently_playing_name = None
 is_paused = False
+is_playing = False
 
 def play_song(song_path):
     pygame.mixer.init()
@@ -57,41 +57,102 @@ def play_song(song_path):
 @app.route('/artists', methods=['GET', 'POST'])
 
 def play_artist():
-    global currently_playing, is_paused
+
+    global currently_playing, is_paused, is_playing
+    
+    selected_song = None
+    song_path = None
+    
+    album_image_path = ["../static/images/album1.jpg",
+                        "../static/images/album2.png",
+                        "../static/images/album3.jpg"]
 
     songs = ["LilUziVert_XO_tour_life.mp3",
              "LilUziVert_20_Min.mp3",
-             "LilUziVert_That_Way.mp3"]
+             "LilUziVert_That_Way.mp3",
+             "LilUziVert_Flooded_The_Face.mp3",
+             "LilUziVert_Erase_Your_Social.mp3"]
+    
+    album_art = {
+        songs[0]: album_image_path[0],
+        songs[1]: album_image_path[0],
+        songs[2]: album_image_path[0],
+        songs[3]: album_image_path[1],
+        songs[4]: album_image_path[2]
+    }
 
+    def get_album_image(song_name):
+        return album_art.get(song_name, 'default-image.jpg') 
+    
+    pygame.init()
+    pygame.mixer.init()
+    
     if request.method == 'POST':
 
         selected_song = request.form.get('selected_song')
         song_path = f"static/songs/{selected_song.strip()}"
 
+        current_song_name = selected_song
+        album_image_path = get_album_image(current_song_name)
+
+        pygame.init()
+        pygame.mixer.init()
+
+        if request.form.get('play') == 'Play':
+
+            # provjera ako muzika jos nije playana
+            
+            if not is_playing:  
+                pygame.mixer.music.load(song_path)
+                pygame.mixer.music.play()
+                is_playing = True
+                is_paused = False
+            
+        elif request.form.get('pause') == 'Pause':
+
+            # pauza ako muzika playa i nije pauza
+            
+            if is_playing and not is_paused:  
+                pygame.mixer.music.pause()
+                is_paused = True
+                
+
         if request.form.get('restart') == 'true':
             
-            #restartaj pjsemu ispocetka ako stisne restart button
+            #restartaj pjsemu ispocetka na restart 
+            
             if currently_playing:
 
                 pygame.mixer.music.rewind()
                 pygame.mixer.music.play()
                 is_paused = False
-                return render_template('artists.html', songs=songs, current_song_name=selected_song)
+                return render_template('artists.html', 
+                                       songs=songs, 
+                                       current_song_name=selected_song,
+                                       album_image_path=album_image_path)
 
         if currently_playing and currently_playing == song_path:
             
             #play i pause
+            
             if is_paused:
 
                 pygame.mixer.music.unpause()
                 is_paused = False
-                return render_template('artists.html', songs=songs, current_song_name=selected_song)
+                return render_template('artists.html', 
+                                       songs=songs, 
+                                       current_song_name=selected_song,
+                                       album_image_path=album_image_path)
             
             else:
 
                 pygame.mixer.music.pause()
                 is_paused = True
-                return render_template('artists.html', songs=songs, current_song_name=selected_song)
+                return render_template('artists.html', 
+                                       songs=songs, 
+                                       current_song_name=selected_song,
+                                       album_image_path=album_image_path)
+            
         else:
         
             if currently_playing:
@@ -100,9 +161,23 @@ def play_artist():
             play_song(song_path)
             currently_playing = song_path
             is_paused = False
-            return render_template('artists.html', songs=songs, current_song_name=selected_song)
+            return render_template('artists.html', 
+                                   songs=songs, 
+                                   current_song_name=selected_song,
+                                   album_image_path=album_image_path)
         
-    return render_template('artists.html', songs=songs, current_song_name=None)
+    #if song_path:
+    #   sound = pygame.mixer.Sound(song_path)
+    #   total_duration = sound.get_length()
+    #else:
+    #   total_duration = 0.0
+
+    #song_position = pygame.mixer.music.get_pos() / 1000.0  # milliseconds to seconds
+        
+    return render_template('artists.html', 
+                           songs=songs, 
+                           current_song_name=None,
+                           album_image_path=album_image_path)
 
 
 @app.route('/albums')
