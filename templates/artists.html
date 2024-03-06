@@ -7,6 +7,8 @@
     <title>Custom Music Player</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style-artists.css') }}">
     <script src="https://kit.fontawesome.com/6b0ea6f5c6.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/howler@2.3.2/dist/howler.min.js"></script>
+    <script src="{{ url_for('static', filename='playMusic.js') }}"></script>
     <script>
         function togglePlayPause() {
             var form = document.getElementById('playForm');
@@ -25,54 +27,15 @@
     <h1>Welcome! <br>
         Enjoy listening to some of my favorite songs</h1>
 
-    <div id="form-container">
-        <!-- <form action="" method="get">
-            <div id="refresh-button"><button type="submit">Refresh</button></div>
-            </form> 
-        -->
-        <div id="left-side">
-            <form method="post" action="/artists">
-
-                <select name="selected_song">
-                    {% for song in songs %}
-                    <option value="{{ song }}" {% if song==current_song_name %} selected {% endif %}>{{
-                        song.split('.')[0]
-                        }}</option>
-                    {% endfor %}
-                </select>
-                <div id="button-container">
-                    <div id="item2">
-                        <button class="invisible-button" type="submit" name="play" value="Play">
-                            <i class="fa-solid fa-circle-play fa-2xl" style="color: #fe10bf;"></i>
-                        </button>
-                    </div>
-
-                    <div id="item3">
-                        <button class="invisible-button" type="submit" name="pause" value="Pause">
-                            <i class="fa-solid fa-circle-pause fa-2xl" style="color: #fe10bf;"></i>
-                        </button>
-                    </div>
-
-                    <div id="item4">
-                        <button class="invisible-button" type="submit" name="restart" value="true">
-                            <i class="fa-solid fa-rotate-right fa-2xl" style="color: #fe10bf;"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
+        <ul id="song-list">
+        </ul>
+    <div id="player-controls">
+        <button id="play-button">Play</button>
+        <button id="pause-button">Pause</button>
         </div>
-    </div>
-    {% if current_song_name %}
 
-    <div id="song-container">
-        <h2>Now Playing: {{ current_song_name.split('.')[0] }}</h2>
-        <img class="album-art" src="{{ url_for('static', filename=album_image_path) }}" alt="Album Cover">
 
-        <!-- Display song duration -->
-
-    </div>
-
-    {% endif %}
+    
 
 </body>
 

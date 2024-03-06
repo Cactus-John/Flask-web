@@ -1,7 +1,7 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from weather import get_current_weather
 from waitress import serve
-import pygame
+
 
 app = Flask(__name__)
 
@@ -36,133 +36,106 @@ def get_weather():
         feels_like=f"{weather_data['main']['feels_like']:.1f}"
     )
 
-currently_playing = None
-is_paused = False
+
+@app.route('/artists', methods=['GET', 'POST'])
+
+def play_artist():
+    # Fetch songs data from database or other source
+    songs = [
+        {'title': '20 Min', 'filename': 'LilUziVert_20_Min.mp3'},
+        {'title': 'Aye', 'filename': 'LilUziVert_Aye.mp3'},
+    ]
+    
+    return render_template('artists.html', songs=songs)
+
+
+"""
 is_playing = False
+is_paused = False
+currently_playing = None
+current_song_name = None
+selected_filename = None
+current_sound = None
 
 def play_song(song_path):
-    pygame.mixer.init()
-
-    try:
-
-        print(f"Playing song: {song_path}")
-        pygame.mixer.music.load(song_path)
-        pygame.mixer.music.play()
-
-    except pygame.error as e:
-
-        print(f"Error playing song: {e}")
+    global current_sound
+    current_sound = pygame.mixer.Sound(song_path)
+    current_sound.play()
 
 
 @app.route('/artists', methods=['GET', 'POST'])
 
 def play_artist():
 
-    global currently_playing, is_paused, is_playing
+    global currently_playing, is_paused, is_playing, current_song_name, selected_filename, current_sound
     
     selected_song = None
     song_path = None
     
-    album_image_path = ["../static/images/album1.jpg",
-                        "../static/images/album2.png",
-                        "../static/images/album3.jpg"]
-
-    songs = ["LilUziVert_XO_tour_life.mp3",
-             "LilUziVert_20_Min.mp3",
-             "LilUziVert_That_Way.mp3",
-             "LilUziVert_Flooded_The_Face.mp3",
-             "LilUziVert_Erase_Your_Social.mp3",
-             "LilUziVert_Aye.mp3",
-             "LilUziVert_Pluto_to_Mars.mp3"]
-    
-    album_art = {
-        songs[0]: album_image_path[0],
-        songs[1]: album_image_path[0],
-        songs[2]: album_image_path[0],
-        songs[3]: album_image_path[1],
-        songs[4]: album_image_path[2],
-        songs[5]: album_image_path[1],
-        songs[6]: album_image_path[1]
-    }
-
-    def get_album_image(song_name):
-        return album_art.get(song_name, 'default-image.jpg') 
+    songs = [
+        {'title': 'XO Tour Life', 'filename': 'LilUziVert_XO_tour_life.mp3', 'image': url_for('static', filename='images/album1.jpg')},
+        {'title': '20 Min', 'filename': 'LilUziVert_20_Min.mp3', 'image': url_for('static', filename='images/album1.jpg')},
+        {'title': 'Aye', 'filename': 'LilUziVert_Aye.mp3', 'image': url_for('static', filename='images/album2.png')},
+        {'title': 'Flooded The Face', 'filename': 'LilUziVert_Flooded_The_Face.mp3', 'image': url_for('static', filename='images/album2.png')},
+        {'title': 'Pluto to Mars', 'filename': 'LilUziVert_Pluto_to_Mars.mp3', 'image': url_for('static', filename='images/album2.png')},
+        {'title': 'That Way', 'filename': 'LilUziVert_That_Way.mp3', 'image': url_for('static', filename='images/album1.jpg')},
+        {'title': 'Erase Your Social', 'filename': 'LilUziVert_Erase_Your_Social.mp3', 'image': url_for('static', filename='images/album3.jpg')},
+    ]
     
     pygame.init()
     pygame.mixer.init()
     
     if request.method == 'POST':
-
         selected_song = request.form.get('selected_song')
-        song_path = f"static/songs/{selected_song.strip()}"
-
-        current_song_name = selected_song
-        album_image_path = get_album_image(current_song_name)
-
-        pygame.init()
-        pygame.mixer.init()
         
-        if request.form.get('play') == 'Play':
-
-            # provjera ako muzika jos nije playana
+        # Find the selected song in the list
+        matching_songs = [song for song in songs if song['title'] == selected_song]
+        
+        if matching_songs:
+            selected_filename = matching_songs[0]['filename']
+            song_path = os.path.join("static/songs", selected_filename)
             
-            if not is_playing:  
-                pygame.mixer.music.load(song_path)
-                pygame.mixer.music.play()
+            if os.path.isfile(song_path):
+                play_song(song_path)
+                currently_playing = selected_song
+            else:
+                print(f"File does not exist: {song_path}")
+        
+            current_song_name = selected_song
+    
+        if request.form.get('play') == 'Play':
+            if not is_playing:
+                if current_sound:
+                    current_sound.unpause()
+                else:
+                    play_song(os.path.join("static/songs", selected_filename))
                 is_playing = True
                 is_paused = False
             
         if request.form.get('restart') == 'true':
-            
-            #restartaj pjsemu ispocetka na restart 
-            
-            if currently_playing:
-
-                pygame.mixer.music.rewind()
-                pygame.mixer.music.play()
+            if current_sound:
+                current_sound.stop()
+                play_song(os.path.join("static/songs", selected_filename))
                 is_paused = False
-               
 
-        if currently_playing and currently_playing == song_path:
-            
-            #play i pause
-            
-            if is_paused:
-
-                pygame.mixer.music.unpause()
-                is_paused = False
-                return render_template('artists.html', 
-                                       songs=songs, 
-                                       current_song_name=selected_song,
-                                       album_image_path=album_image_path)
-               
-            else:
-
-                pygame.mixer.music.pause()
+        if request.form.get('pause') == 'Pause':
+             if current_sound and selected_filename:
+                current_sound.pause()
                 is_paused = True
-                return render_template('artists.html', 
-                                       songs=songs, 
-                                       current_song_name=selected_song,
-                                       album_image_path=album_image_path)
-                
-        else:
-        
-            if currently_playing:
-                pygame.mixer.music.stop()
 
-            play_song(song_path)
-            currently_playing = song_path
-            is_paused = False
-            return render_template('artists.html', 
-                                    songs=songs, 
-                                    current_song_name=selected_song,
-                                    album_image_path=album_image_path)
-    
-    
+        if request.form.get('resume') == 'Resume':
+            if current_sound and is_paused:
+                current_sound.unpause()
+                is_paused = False
+                is_playing = True 
+
     return render_template('artists.html', 
                            songs=songs, 
-                           current_song_name=None,
-                           album_image_path=album_image_path)
+                           current_song_name=current_song_name, 
+                           is_paused=is_paused, 
+                           is_playing=is_playing) 
+                           
+"""
 
 
 @app.route('/albums')
@@ -171,10 +144,5 @@ def test():
     return render_template('albums.html')
 
 if __name__ == "__main__":
-<<<<<<< HEAD
     #serve(app, host="0.0.0.0", port=8000)
     app.run(host="0.0.0.0", port=5000, debug=True)
-=======
-    serve(app, host="0.0.0.0", port=8000)
-    app.run(debug=True)
->>>>>>> 5d1782cd28a955f8ec27e475e9d2064b5fe69968

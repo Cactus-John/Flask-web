@@ -31,13 +31,6 @@ nav {
   }
 }
 
-.album-art {
-  width: auto;
-  height: auto;
-  box-shadow: 5px 5px 10px red;
-  filter: drop-shadow(16px 16px 10px black);
-}
-
 #refresh-button {
   display: block;
   position: relative;
@@ -91,7 +84,7 @@ nav {
     color: rgb(230, 2, 255);
     font-weight: bolder;
     text-shadow: 10px 10px 8px black;
-    filter: drop-shadow(5px 5px 10px black);
+    filter: drop-shadow(5px 5px 10px black );
   }
 
   /*#position1,
@@ -129,6 +122,25 @@ select {
     background-color: pink; 
     color: #333; 
   }
+}
+
+footer {
+    display: flex;
+    justify-content: center;  
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    top: auto;
+    left: 40%;
+
+
+    #wrap-github {
+
+      #wrap-instagram {
+        outline: 3px solid yellow;
+        
+      }
+    }
 }
 
 @media only screen and (max-width:900px) {
