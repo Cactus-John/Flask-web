@@ -8,8 +8,12 @@
   <title>Home</title>
 </head>
 
-<body>
+<body>  
   <div class="header">
+    <div class = "forms-navbar">
+      <a id ="link" href="{{url_for('signup')}}">SignUp</a>
+      <a id ="link" href="{{url_for('login')}}">Login</a>
+    </div>
       <img src="../static/images/black3.jpg">
       <h1>
         <span>𝕀𝕧𝕒𝕟</span>
@@ -24,15 +28,6 @@
           <button class="dropbtn">Weather</button>
           <div class="dropdown-content">
             <a href="{{url_for('get_weather')}}">Search Weather</a>
-          </div>
-        </div>
-
-        <div class="dropdown">
-          <button class="dropbtn">Music
-          </button>
-          <div class="dropdown-content">
-            <a href="{{url_for('play_artist')}}">Artists</a>
-            <a href="{{url_for('test')}}">Albums</a>
           </div>
         </div>
       </div>
@@ -66,7 +61,7 @@
     <div class="section-flex">
       <div class="section-design">
         <h2>About Me</h2>
-        <p>My favorite project that is on GitHub:</p>
+        <p>My favorite GitHub projects:</p>
         <button>Learn More</button>
       </div>
     </div>

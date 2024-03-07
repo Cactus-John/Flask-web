@@ -1,30 +1,126 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, url_for, redirect
 from weather import get_current_weather
 from waitress import serve
-
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SubmitField
+from wtforms.validators import InputRequired, DataRequired, Length, ValidationError
+from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
 
-@app.route('/')
+#--------------------------- DATABASE CREATION AND MANAGEMENT ----------------------------#
 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+app.config['SECRET_KEY'] = 'mysecretkey'
+db = SQLAlchemy(app)
+bcrypt = Bcrypt(app)
+
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+
+
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(20), nullable=False, unique=True)
+    password = db.Column(db.String(50), nullable=False)
+    
+    with app.app_context():
+        db.create_all()
+    
+    
+class RegisterForm(FlaskForm):
+    username = StringField(validators=[DataRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
+    password = PasswordField(validators=[DataRequired(), Length(min=5, max=30)], render_kw={"placeholder": "Password"})
+    submit = SubmitField("Register")
+    
+    def validate_username(self, username):
+        existing_user_username = User.query.filter_by(
+            username=username.data).first()
+        if existing_user_username:
+            raise ValidationError('That username already exists. Please choose a different one.')
+        
+    
+    
+class LoginForm(FlaskForm):
+    username = StringField(validators=[DataRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
+    password = PasswordField(validators=[DataRequired(), Length(min=5, max=30)], render_kw={"placeholder": "Password"})
+    submit = SubmitField('Login')
+    
+
+
+@app.route('/login')
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user:
+            if bcrypt.check_password_hash(user.password, form.password.data):
+                login_user(user)
+                return redirect(url_for('success'))
+            
+    return render_template('login.html', form=form)
+
+      
+      
+@app.route('/success', methods=['GET', 'POST'])
+@login_required
+def success():
+    return render_template('success.html')
+   
+@app.route('/logout', methods=['GET', 'POST'])
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
+
+    
+@app.route('/signup', methods=['POST', 'GET'])
+def signup():
+    form = RegisterForm()
+
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(form.password.data)
+        new_user = User(username=form.username.data, password=hashed_password)
+        db.session.add(new_user)
+        db.session.commit()
+        
+        return redirect(url_for('login'))
+
+    return render_template('signup.html', form=form)
+    
+#-----------------------------------------------------------------------------------------#
+    
+    
+    
+#---------------------------------------- WEATHER REQUESTS -------------------------------#
+        
+@app.route('/')
 def home():
     return render_template('index.html')
 
-@app.route('/weather', methods = ['GET', 'POST'])
+@app.route('/weather', methods=['GET', 'POST'])
 
 def get_weather():
     city = request.args.get('city')
     
     # Handlea prazan string ili razmake
     if city is not None and not bool(city.strip()):
-
         city = "Samobor"
 
     weather_data = get_current_weather(city)
     
     # Handlea error 404 (city not found); 200 -> success
     if not weather_data['cod'] == 200:
-
         return render_template('city_not_found.html')
 
     return render_template (
@@ -35,114 +131,12 @@ def get_weather():
         icon=weather_data["weather"][0]["icon"],
         feels_like=f"{weather_data['main']['feels_like']:.1f}"
     )
-
-
-@app.route('/artists', methods=['GET', 'POST'])
-
-def play_artist():
-    # Fetch songs data from database or other source
-    songs = [
-        {'title': '20 Min', 'filename': 'LilUziVert_20_Min.mp3'},
-        {'title': 'Aye', 'filename': 'LilUziVert_Aye.mp3'},
-    ]
     
-    return render_template('artists.html', songs=songs)
-
-
-"""
-is_playing = False
-is_paused = False
-currently_playing = None
-current_song_name = None
-selected_filename = None
-current_sound = None
-
-def play_song(song_path):
-    global current_sound
-    current_sound = pygame.mixer.Sound(song_path)
-    current_sound.play()
-
-
-@app.route('/artists', methods=['GET', 'POST'])
-
-def play_artist():
-
-    global currently_playing, is_paused, is_playing, current_song_name, selected_filename, current_sound
-    
-    selected_song = None
-    song_path = None
-    
-    songs = [
-        {'title': 'XO Tour Life', 'filename': 'LilUziVert_XO_tour_life.mp3', 'image': url_for('static', filename='images/album1.jpg')},
-        {'title': '20 Min', 'filename': 'LilUziVert_20_Min.mp3', 'image': url_for('static', filename='images/album1.jpg')},
-        {'title': 'Aye', 'filename': 'LilUziVert_Aye.mp3', 'image': url_for('static', filename='images/album2.png')},
-        {'title': 'Flooded The Face', 'filename': 'LilUziVert_Flooded_The_Face.mp3', 'image': url_for('static', filename='images/album2.png')},
-        {'title': 'Pluto to Mars', 'filename': 'LilUziVert_Pluto_to_Mars.mp3', 'image': url_for('static', filename='images/album2.png')},
-        {'title': 'That Way', 'filename': 'LilUziVert_That_Way.mp3', 'image': url_for('static', filename='images/album1.jpg')},
-        {'title': 'Erase Your Social', 'filename': 'LilUziVert_Erase_Your_Social.mp3', 'image': url_for('static', filename='images/album3.jpg')},
-    ]
-    
-    pygame.init()
-    pygame.mixer.init()
-    
-    if request.method == 'POST':
-        selected_song = request.form.get('selected_song')
-        
-        # Find the selected song in the list
-        matching_songs = [song for song in songs if song['title'] == selected_song]
-        
-        if matching_songs:
-            selected_filename = matching_songs[0]['filename']
-            song_path = os.path.join("static/songs", selected_filename)
-            
-            if os.path.isfile(song_path):
-                play_song(song_path)
-                currently_playing = selected_song
-            else:
-                print(f"File does not exist: {song_path}")
-        
-            current_song_name = selected_song
-    
-        if request.form.get('play') == 'Play':
-            if not is_playing:
-                if current_sound:
-                    current_sound.unpause()
-                else:
-                    play_song(os.path.join("static/songs", selected_filename))
-                is_playing = True
-                is_paused = False
-            
-        if request.form.get('restart') == 'true':
-            if current_sound:
-                current_sound.stop()
-                play_song(os.path.join("static/songs", selected_filename))
-                is_paused = False
-
-        if request.form.get('pause') == 'Pause':
-             if current_sound and selected_filename:
-                current_sound.pause()
-                is_paused = True
-
-        if request.form.get('resume') == 'Resume':
-            if current_sound and is_paused:
-                current_sound.unpause()
-                is_paused = False
-                is_playing = True 
-
-    return render_template('artists.html', 
-                           songs=songs, 
-                           current_song_name=current_song_name, 
-                           is_paused=is_paused, 
-                           is_playing=is_playing) 
-                           
-"""
-
-
-@app.route('/albums')
-
-def test(): 
-    return render_template('albums.html')
+#-----------------------------------------------------------------------------------------#
 
 if __name__ == "__main__":
-    serve(app, host="0.0.0.0", port=8000)
-    #app.run(host="0.0.0.0", port=5000, debug=True)
+    #serve(app, host="0.0.0.0", port=8000)
+    
+
+    
+    app.run(host="0.0.0.0", port=8000, debug=True)

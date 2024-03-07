@@ -201,6 +201,18 @@ footer {
   padding: 25px;
 }
 
+.forms-navbar {
+  background-color: black;
+  display: ruby-base;
+  position: absolute;
+  top: 250px;
+  left: 25px;
+}
+.forms-navbar #link {
+  color: red;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 @keyframes pulsingBackground {
   0% {
     background-color: #000;

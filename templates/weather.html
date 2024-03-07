@@ -5,24 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }} Weather</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style-weather.css')}}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style-weather.css') }}" />
 </head>
 
 <body>
 
     <nav class="navbarContainer">
         <div class="navbar">
-            <a href="{{url_for('home')}}">Home</a>
-                <div class="dropdown">
-                    <button class="dropbtn">Music
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="{{url_for('play_artist')}}">Artists</a>
-                        <a href="{{url_for('test')}}">Albums</a>
-                    </div>
-                </div>
+            <a href="{{ url_for('home') }}">Home</a>
             </div>
         </div>
     </nav>
