@@ -4,23 +4,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/6b0ea6f5c6.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
   <title>Home</title>
 </head>
 
-<body>  
+<body>
   <div class="header">
-    <div class = "forms-navbar">
-      <a id ="link" href="{{url_for('signup')}}">SignUp</a>
-      <a id ="link" href="{{url_for('login')}}">Login</a>
+    <div class="forms-navbar">
+      <a id="link" href="{{url_for('signup')}}">SignUp</a>
+      <a id="link" href="{{url_for('login')}}">Login</a>
     </div>
-      <img src="../static/images/black3.jpg">
-      <h1>
-        <span>𝕀𝕧𝕒𝕟</span>
-      </h1>
-      <h4>
-        <span>𝔹𝕠š𝕟𝕛𝕒𝕜</span>
-      </h4>
+    <img src="../static/images/black3.jpg">
+    <h1>
+      <span>𝕀𝕧𝕒𝕟</span>
+    </h1>
+    <h4>
+      <span>𝔹𝕠š𝕟𝕛𝕒𝕜</span>
+    </h4>
     <nav class="navbarContainer">
       <div class="navbar">
         <a href="{{url_for('home')}}">Home</a>
@@ -35,45 +36,135 @@
   </div>
 
 
-  <div class="section-flex-container">
+  <div class="parallax-container">
+    <div class="parallax-section parallax-section1">
+      <div class="parallax-content">
+        <div class="section-flex-container">
+          <div class="section-flex">
+            <div class="section-design1">
+              <div id="item1">
+                <h2><i class="fa-brands fa-github fa-2xl" style="color: #ff0033;"></i></h2>
 
-    <div class="section-flex">
-      <div class="section-design">
-        <div id="item1">
-          <h2>About me:</h2>
+                <h2>GitHub</h2>
+              </div>
+              <div id="item2">
+                <p>Since I was a kid, one of my favorite things to do was being creative
+                  and able to think deeply and so that's how my passion for programming started.
+                  In primary school one of my friends showed me his flappy bird project that he was doing in Python.
+                  And so it lit a spark in me, I thought that is so cool how did you do that. And gradually i got more
+                  interested</p>
+              </div>
+              <div id="item3">
+                <a href="" target="_blank">
+                  <button>Github Info</button>
+                </a>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="section-flex">
+            <div class="section-design2">
+              <div class="item1">
+                <h2><i class="fa-brands fa-android fa-2xl" style="color: #2effc0;"></i></h2>
+                <h2 style="color: #2effc0;">Android App</h2>
+              </div>
+              <div class="item2">
+                <p>One of my recent favorite projects is making an application in Android Studio.
+                  Reasoning of that is probably because I've always loved using phone and cool apps so
+                  the fact that I made my own simple app is really cool.
+                </p>
+              </div>
+              <div class="item3">
+                <a href="" target="_blank">
+                  <button>Android Application</button>
+                </a>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="section-flex">
+            <div class="section-design3">
+              <div class="item1">
+                <h2><i class="fa-solid fa-cloud fa-2xl" style="color: white;"></i></h2>
+                <h2 style="color: white;">Weather Forecast</h2>
+              </div>
+              <div class="item2">
+                <p>Click on the button below to see my own Weather Forecast that I made using
+                  OpenWeatherMap api to help me request weather data and create my own simple and fun
+                  weather forecast in Flask.
+                </p>
+              </div>
+              <div class="item3">
+                <a href="" target="_blank">
+                  <button>Weather Forecast</button>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-        <div id="item2">
-          <p>𝘚𝘰𝘮𝘦 𝘰𝘧 𝘮𝘺 𝘧𝘢𝘷𝘰𝘳𝘪𝘵𝘦 𝘵𝘩𝘪𝘯𝘨𝘴 𝘵𝘰 𝘥𝘰 𝘢𝘳𝘦 𝘱𝘳𝘰𝘨𝘳𝘢𝘮𝘮𝘪𝘯𝘨, 𝘨𝘢𝘮𝘪𝘯𝘨,
-            𝘭𝘪𝘴𝘵𝘦𝘯𝘪𝘯𝘨 𝘵𝘰 𝘮𝘶𝘴𝘪𝘤, playing 𝘣𝘢𝘴𝘬𝘦𝘵𝘣𝘢𝘭𝘭... </p>
-        </div>
-        <div id="item3"> <button>Learn More</button> </div>
-      </div>
-    </div>
-
-    <div class="section-flex">
-      <div class="section-design">
-        <h2>About me:</h2>
-        <p>GitHub: Flask-web</p>
-        <button>Learn More</button>
-      </div>
-    </div>
-
-    <div class="section-flex">
-      <div class="section-design">
-        <h2>About Me</h2>
-        <p>My favorite GitHub projects:</p>
-        <button>Learn More</button>
       </div>
     </div>
   </div>
-  <div id="flex-footer">
-    <div id="github">
-      <p>GitHub</p>
-    </div>
-    <div id="instagram">
-      <p>Instagram</p>
+
+
+  <div class="parallax-container">
+    <div class="parallax-section parallax-section2">
+      <div class="parallax-content">
+        <div id="flex-footer">
+          <div id="flex-footer-container">
+            <div id="flex-footer-design">
+              <div id="github">
+                <a href="https://github.com/Cactus-John/Flask-web" target="_blank">
+                  <i class="fa-brands fa-github fa-2xl" style="color: #ff0033;"></i>
+                </a>
+              </div>
+            </div>
+            <div id="flex-footer-design">
+              <div id="instagram">
+                <a href="https://www.instagram.com/ivan_bosnjak0/" target="_blank">
+                  <i class="fa-brands fa-instagram fa-2xl" style="color: #e9591c;"></i>
+                </a>
+              </div>
+            </div>
+            <div id="flex-footer-design">
+              <div id="python">
+                <a href="https://github.com/Cactus-John/Flask-web/blob/main/server.py" target="_blank">
+                  <i class="fa-brands fa-python fa-2xl" style="color: #6ee71d;"></i>
+                </a>
+              </div>
+            </div>
+            <div id="flex-footer-design">
+              <div id="youtube">
+                <a href="https://www.youtube.com/@ivanbosnjak1651/featured" target="_blank">
+                  <i class="fa-brands fa-youtube fa-2xl" style="color: #ff0000;"></i>
+                </a>
+              </div>
+            </div>
+            <div id="flex-footer-design">
+              <div id="weather">
+                <a href="{{url_for('get_weather')}}" target="_blank">
+                  <i class="fa-solid fa-cloud-bolt fa-2xl" style="color: yellow"></i>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
+  <script>
+    window.addEventListener('scroll', function() {
+      let offset = window.pageYOffset;
+      document.querySelectorAll('.parallax-section').forEach(function(section) {
+        let speed = section.dataset.speed || 1;
+        section.style.backgroundPositionY = offset * speed + 'px';
+      });
+    });
+  </script>
 </body>
 
 </html>

@@ -3,6 +3,7 @@ body {
   background: black;
   cursor: default;
   margin-inline: 0;
+  overflow-x: hidden;
 }
 
 span {
@@ -44,8 +45,10 @@ h4 {
 }
 
 p {
-  color: white;
-  font: .8rem sans-serif;
+  color: gray;
+  font-weight: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  filter: drop-shadow(2px 2px 4px darkmagenta);
 }
 
 .navbarContainer {
@@ -118,6 +121,42 @@ p {
   }
 }
 
+@keyframes pulsingBackground {
+  0% {
+    background-color: #000; }
+
+  25% {
+    background-color: #291836; }
+
+  40% {
+    background-color: #2d173e; }
+
+  50% {
+    background-color: #240f34; }
+
+  75% {
+    background-color: #240a38; }
+
+  90% {
+    background-color: #150422; }
+
+  100% {
+    background-color: #000; }
+}
+
+@keyframes zoomingBackground {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.2, 1.2);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+
 .navbar {
   .dropdown:hover .dropbtn,
   a:hover {
@@ -156,12 +195,17 @@ p {
 }
 
 button {
-  background-color: #2980b9;
-  border-radius: .2%;
+  background-color: darkred;
+  filter: drop-shadow(2px 2px 15px red);
+  border: none;
   cursor: grab;
+  font: 1rem sans-serif;
 
-  :hover {
-    text-shadow: 2px 2px 14px red;
+  &:hover {
+    text-align: center;
+    color:black;
+    -webkit-text-fill-color: black;
+    
   }
 }
 
@@ -186,36 +230,197 @@ footer {
   text-align: center;
 }
 
-.parallax {
-  width: 100%;
+.parallax-container {
   height: 100vh;
-  background: black;
-  background-attachment: fixed;
-  background-size: cover;
-
+  overflow: hidden;
+  position: relative;
 }
+
+.parallax-section {
+  height: 100%;
+  position: relative;
+  background-position: center;
+  background-size: cover;
+}
+
+.parallax-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  font-size: 24px;
+}
+
+.parallax-section1 {
+  background-image: url('../images/python.jpg');
+}
+
+.parallax-section2 {
+  background-image: url('../images/python2.jpg');
+}
+
+.about-me {
+  padding: 10px;
+  position: absolute;
+  width: 200vh;
+  height: 1000px;
+}
+
+.about-container {
+  display: flex;
+  
+  justify-content: center;
+}
+
 
 .section-flex-container {
   display: flex;
-  align-items: flex-start;
   justify-content: center;
   flex-direction: row;
-
+  flex-wrap: nowrap;
+  
+  filter: drop-shadow(10px 10px 30px  purple);
 }
 
 .section-flex {
+  display: flex;
   padding: 50px;
+  align-items: center;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 200px;
+
   
   #item1 {
     color: red;
     -webkit-text-fill-color: red;
+    padding: 4px 2px 2px 4px;
+  }
+
+  #item2 {
+    padding: 4px 2px 2px 4px;
+  }
+
+  #item3 {
+    padding: 4px 2px 2px 4px;
+    justify-self: center;
   }
 }
 
-.section-design {
+.section-design1, .section-design2, .section-design3 {
   background-color: rgb(32, 2, 2);
   border-radius: 8px;
   box-shadow: 0.9px 0.9px 20px white;
+  height: 400px;
+  width: 350px;
+  padding: 25px;
+
+  &.section-design1:hover {
+    background-image: url("../images/python2.jpg");
+    animation: zoomingBackground;
+    animation-play-state: running;
+    animation-duration: 10s;
+    animation-iteration-count:infinite;
+    animation-fill-mode: forwards;
+    animation-composition: inherit;
+
+    p {
+      color: lightgreen;
+      font-weight: bold;
+    }
+    button{
+      background-color: lightgreen;
+    }
+  }
+
+  &.section-design2:hover {
+    background-image: url("../images/android.jpg");
+    animation: zoomingBackground;
+    animation-play-state: running;
+    animation-duration: 10s;
+    animation-iteration-count:infinite;
+    animation-fill-mode: forwards;
+    animation-composition: inherit;
+    p {
+      color: #2effc0;
+      font-weight: bold;
+      
+    }
+    button {
+      background-color: #2effc0;
+    }
+  }
+  
+
+  &.section-design3:hover{
+    background-image: url("../images/weather.jpg");
+    animation: zoomingBackground;
+    animation-play-state: running;
+    animation-duration: 10s;
+    animation-iteration-count:infinite;
+    animation-fill-mode: forwards;
+    animation-composition: inherit;
+    p {
+      color: black;
+      filter: none;
+    }
+    button {
+      background-color: white;
+      color:gray
+      
+    }
+  }
+}
+
+@keyframes zoomFooterIcons {
+  from {
+    transform: scale(1, 1)
+  }
+  to {
+    transform: scale(1.8, 1.8)
+  }
+}
+
+#flex-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: auto;
+  width: auto;
+  height: 200vh;
+  
+}
+
+
+
+#flex-footer-container {
+  display: flex;
+  padding: 50px;
+  align-items: center;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 200px;
+
+  #github,
+  #instagram,
+  #python,
+  #youtube,
+  #weather {
+    flex: 1;
+    padding: 20px;
+    :hover {
+      filter: drop-shadow(2px 2px 10px red);
+      animation-name:zoomFooterIcons;
+      animation-duration: 3s;
+      animation-play-state: running;
+    }
+  }
+}
+
+#flex-footer-design {
+  
   padding: 25px;
 }
 
@@ -232,19 +437,6 @@ footer {
   }
 }
 
-@keyframes pulsingBackground {
-  0% {
-    background-color: #000;
-  }
-
-  50% {
-    background-color: #1c052e;
-  }
-
-  100% {
-    background-color: #000;
-  }
-}
 
 /* PHONE VIEW  - 900px screen size */
 
@@ -310,15 +502,5 @@ footer {
     display: block;
   }
 
-  .parallax {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-    transform: translateZ(0);
-  }
 }
 

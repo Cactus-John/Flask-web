@@ -1,0 +1,8 @@
+body {
+  background-image: -webkit-radial-gradient(white, lightblue, navy);
+  background-color: antiquewhite;
+}
+
+form {
+  display: flex;
+}/*# sourceMappingURL=style-form.css.map */

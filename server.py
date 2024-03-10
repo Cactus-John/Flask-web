@@ -57,7 +57,7 @@ class LoginForm(FlaskForm):
 
 
 
-@app.route("/register", methods=['GET', 'POST'])
+@app.route("/signup", methods=['GET', 'POST'])
 
 def signup():
     form = RegistrationForm()
@@ -68,7 +68,7 @@ def signup():
         new_user = User(username=form.username.data, password=hashed_password)
         
         db.session.add(new_user)
-        db.session.commit()
+        db.create_all()
         
         return redirect(url_for('login'))
     
