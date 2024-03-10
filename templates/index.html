@@ -42,65 +42,55 @@
         <div class="section-flex-container">
           <div class="section-flex">
             <div class="section-design1">
-              <div id="item1">
-                <h2><i class="fa-brands fa-github fa-2xl" style="color: #ff0033;"></i></h2>
+              <a href="https://github.com/Cactus-John" target="_blank">
+                <div id="item1">
+                  <h2><i class="fa-brands fa-github fa-2xl" style="color: #ff0033;"></i></h2>
 
-                <h2>GitHub</h2>
-              </div>
-              <div id="item2">
-                <p>Since I was a kid, one of my favorite things to do was being creative
-                  and able to think deeply and so that's how my passion for programming started.
-                  In primary school one of my friends showed me his flappy bird project that he was doing in Python.
-                  And so it lit a spark in me, I thought that is so cool how did you do that. And gradually i got more
-                  interested</p>
-              </div>
-              <div id="item3">
-                <a href="" target="_blank">
-                  <button>Github Info</button>
-                </a>
-              </div>
+                  <h2>GitHub</h2>
+                </div>
+                <div id="item2">
+                  <p>Since I was a kid, one of my favorite things to do was being creative
+                    and always I was thinking more deeply how things were done and so that's
+                    how my passion for programming started.
+                  </p>
+                </div>
+              </a>
             </div>
           </div>
 
 
           <div class="section-flex">
             <div class="section-design2">
-              <div class="item1">
-                <h2><i class="fa-brands fa-android fa-2xl" style="color: #2effc0;"></i></h2>
-                <h2 style="color: #2effc0;">Android App</h2>
-              </div>
-              <div class="item2">
-                <p>One of my recent favorite projects is making an application in Android Studio.
-                  Reasoning of that is probably because I've always loved using phone and cool apps so
-                  the fact that I made my own simple app is really cool.
-                </p>
-              </div>
-              <div class="item3">
-                <a href="" target="_blank">
-                  <button>Android Application</button>
-                </a>
-              </div>
+              <a href="https://github.com/Cactus-John/AndroidTest/tree/main" target="_blank">
+                <div class="item1">
+                  <h2><i class="fa-brands fa-android fa-2xl" style="color: #2effc0;"></i></h2>
+                  <h2 style="color: #2effc0;">Android App</h2>
+                </div>
+                <div class="item2">
+                  <p>One of my recent favorite projects is making an application in Android Studio.
+                    Reasoning of that is probably because I've always loved using phone and cool apps so
+                    the fact that I made my own simple app is really cool.
+                  </p>
+                </div>
+              </a>
             </div>
           </div>
 
 
           <div class="section-flex">
             <div class="section-design3">
-              <div class="item1">
-                <h2><i class="fa-solid fa-cloud fa-2xl" style="color: white;"></i></h2>
-                <h2 style="color: white;">Weather Forecast</h2>
-              </div>
-              <div class="item2">
-                <p>Click on the button below to see my own Weather Forecast that I made using
-                  OpenWeatherMap api to help me request weather data and create my own simple and fun
-                  weather forecast in Flask.
-                </p>
-              </div>
-              <div class="item3">
-                <a href="" target="_blank">
-                  <button>Weather Forecast</button>
-                </a>
-              </div>
+              <a href="{{url_for('get_weather')}}" target="_blank">
+                <div class="item1">
+                  <h2><i class="fa-solid fa-cloud fa-2xl" style="color: white;"></i></h2>
+                  <h2 style="color: white;">Weather Forecast</h2>
+                </div>
+                <div class="item2">
+                  <p>Click on the button below to see my own Weather Forecast that I made using
+                    OpenWeatherMap api to help me request weather data and create my own simple and fun
+                    weather forecast in Flask.
+                  </p>
+                </div>
+              </a>
             </div>
           </div>
         </div>
@@ -157,9 +147,9 @@
   </div>
 
   <script>
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
       let offset = window.pageYOffset;
-      document.querySelectorAll('.parallax-section').forEach(function(section) {
+      document.querySelectorAll('.parallax-section').forEach(function (section) {
         let speed = section.dataset.speed || 1;
         section.style.backgroundPositionY = offset * speed + 'px';
       });

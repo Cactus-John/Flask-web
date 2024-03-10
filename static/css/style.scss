@@ -13,6 +13,10 @@ span {
   filter: blur(2px);
 }
 
+a {
+  text-decoration: none;
+}
+
 h1 {
   text-align: center;
   font-size: 64px;
@@ -261,20 +265,6 @@ footer {
   background-image: url('../images/python2.jpg');
 }
 
-.about-me {
-  padding: 10px;
-  position: absolute;
-  width: 200vh;
-  height: 1000px;
-}
-
-.about-container {
-  display: flex;
-  
-  justify-content: center;
-}
-
-
 .section-flex-container {
   display: flex;
   justify-content: center;
@@ -317,14 +307,18 @@ footer {
   width: 350px;
   padding: 25px;
 
-  &.section-design1:hover {
-    background-image: url("../images/python2.jpg");
+  &:hover{
     animation: zoomingBackground;
     animation-play-state: running;
     animation-duration: 10s;
     animation-iteration-count:infinite;
     animation-fill-mode: forwards;
     animation-composition: inherit;
+  }
+
+  &.section-design1:hover {
+    background-image: url("../images/python2.jpg");
+    
 
     p {
       color: lightgreen;
