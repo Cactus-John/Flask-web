@@ -11,10 +11,14 @@
 <body>
     <h1>Sign Up</h1>
 
-    <form method="POST" action="">
-        {{ form.username }}
-        {{ form.password }}
-        {{ form.submit }}
+    <form method="post" action="{{ url_for('signup') }}">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Sign Up</button>
     </form>
 
     <a href="{{ url_for('login') }}">Already have an account? Log In</a>

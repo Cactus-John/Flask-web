@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, session, flash
 from weather import get_current_weather
 from waitress import serve
 from flask_sqlalchemy import SQLAlchemy
@@ -9,101 +9,110 @@ from wtforms.validators import DataRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
 from dotenv import load_dotenv
 
+import sqlite3 as sql
+
 load_dotenv()
 
 app = Flask(__name__)
 
 #--------------------------- DATABASE CREATION AND MANAGEMENT ----------------------------#
 
-app.config['SECRET_KEY'] = 'cactusjohn-secret-key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1523@localhost:5432/postgres'
-db = SQLAlchemy(app)
-bcrypt = Bcrypt(app)
 
+app.secret_key = "my_secret_key"
 
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = 'login'
+conn = sql.connect('db_users.db')
+print ("Opened database successfully")
 
+conn.execute('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)')
+print ("Table created successfully")
+conn.close()
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
-
-class User(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(50), nullable=False, unique=True)
-    password = db.Column(db.String(30), nullable=False)
-
-    with app.app_context():
-        db.create_all()
-
-class RegistrationForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired(), Length(min=3, max=35)])
-    password = PasswordField('Password', validators=[DataRequired(), Length(min=4, max=20)])
-    submit = SubmitField('Sign Up')
-    
-    def validate_username(self, username):
-        existing_user_username = User.query.filter_by(username=username.data).first()
-        
-        if existing_user_username:
-            raise ValidationError('That username already exists. Please choose a different one.')
-
-
-class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired(), Length(min=3, max=35)])
-    password = PasswordField('Password', validators=[DataRequired(), Length(min=4, max=20)])
-    submit = SubmitField('Login')
-
-
-
-@app.route("/signup", methods=['GET', 'POST'])
-
+@app.route("/signup", methods=["GET", "POST"])
 def signup():
-    form = RegistrationForm()
+    if request.method == 'POST':
+        try:
+            username = request.form['username']
+            password = request.form['password']
 
-    if form.validate_on_submit():   
-         
-        hashed_password = bcrypt.generate_password_hash(form.password.data)
-        new_user = User(username=form.username.data, password=hashed_password)
-        
-        db.session.add(new_user)
-        db.create_all()
-        
-        return redirect(url_for('login'))
-    
-    return render_template('signup.html', title='Sign Up', form=form)
+            with sql.connect("db_users.db") as con:
+                cur = con.cursor()
+                cur.execute("INSERT INTO users "
+                            "(username, password) "
+                            "VALUES (?, ?)", 
+                            (username, password)
+                )
+                con.commit()
 
+                # Log in the user after successful signup
+                cur.execute("SELECT * FROM users WHERE username = ? AND password = ?", (username, password))
+                user = cur.fetchone()
 
+                if user:
+                    # Store user_id in the session to mark them as logged in
+                    session['user_id'] = user[0]
+                    flash('Signup and login successful', 'success')
+                    return redirect(url_for('dashboard'))
 
-@app.route("/login", methods=['GET', 'POST'])
+        except Exception as e:
+            con.rollback()
+            flash(f"Error in signup: {str(e)}", 'error')
 
-def login():
-    form = LoginForm()
-    
-    if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
-        
-        if user:
-            if bcrypt.check_password_hash(user.password, form.password.data):
-                login_user(user)
-                return redirect(url_for('success'))
+        finally:
+            con.close()
+
+    return render_template("signup.html")
+
             
-    return render_template('login.html', form=form)
+@app.route("/login", methods=["GET", "POST"])            
+def login():
+    if request.method == 'POST':
+        try:
+            username = request.form['username']
+            password = request.form['password']
+
+            with sql.connect("db_users.db") as con:
+                cur = con.cursor()
+                cur.execute("SELECT * FROM users WHERE username = ? AND password = ?", (username, password))
+                user = cur.fetchone()
+
+                if user:
+                    # Log in the user by storing their ID in the session
+                    session['user_id'] = user[0]
+                    flash('Login successful', 'success')
+                    return redirect(url_for('dashboard'))
+                else:
+                    flash('Invalid username or password', 'error')
+
+        except Exception as e:
+            flash('Error during login', 'error')
+            print(str(e))
+
+    return render_template("login.html")
 
 
-@app.route('/logout', methods=['GET', 'POST'])
-@login_required
-def logout():
-    logout_user()
+@app.route("/dashboard")
+def dashboard():
+    if 'user_id' in session:
+        # Retrieve user information from the database using the session ID
+        with sql.connect("db_users.db") as con:
+            cur = con.cursor()
+            cur.execute("SELECT * FROM users WHERE id = ?", (session['user_id'],))
+            user = cur.fetchone()
+
+        if user:
+            return render_template("dashboard.html", user=user)
+
+    # If user is not logged in, redirect to the login page
+    flash('You need to login first', 'error')
     return redirect(url_for('login'))
 
+@app.route("/logout")
+def logout():
+    # Clear the session to log out the user
+    session.clear()
+    flash('You have been logged out', 'success')
+    return redirect(url_for('login'))
 
-@app.route('/success', methods=['GET', 'POST'])
-@login_required
-def success():
-    return render_template('success.html')
-  
 
 #-----------------------------------------------------------------------------------------#
     

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Welcome to Your Dashboard, {{ user[1] }}!</h1>
+    <h1>Thank you for making an account on my page.</h1>
+    
+    <!-- Add any additional content or features you want on the dashboard -->
+    <a href="{{url_for('home')}}">Home</a><br>
+    <a href="{{url_for('get_weather')}}">Weather</a><br>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>
