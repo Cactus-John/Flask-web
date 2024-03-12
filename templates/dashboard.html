@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style-form.css')}}">
+    <script src="https://kit.fontawesome.com/6b0ea6f5c6.js" crossorigin="anonymous"></script>
     <title>Dashboard</title>
 </head>
-<body>
-    <h1>Welcome to Your Dashboard, {{ user[1] }}!</h1>
-    <h1>Thank you for making an account on my page.</h1>
-    
-    <!-- Add any additional content or features you want on the dashboard -->
-    <a href="{{url_for('home')}}">Home</a><br>
-    <a href="{{url_for('get_weather')}}">Weather</a><br>
-    <a href="{{ url_for('logout') }}">Logout</a>
+
+<body id = "body-dash">
+    <h2>Welcome to Your Dashboard, <span class="user-text">{{ user[1] }}</span>!</h2>
+    <h2>Thank You For Making An Account On My Page.</h2>
+
+    <div id="dashboard-nav">
+        <a class="hover-link" href="{{url_for('home')}}">
+            <i class="fa-solid fa-house fa-2xl" style="color: #e92fae;"></i>
+        </a>
+        <br>
+        <a class="hover-link" href="{{url_for('get_weather')}}">
+            <i class="fa-solid fa-cloud-bolt fa-2xl" style="color: yellow"></i>
+        </a>
+        <br>
+        <a class="hover-link" href="{{ url_for('logout') }}">
+            <i class="fa-solid fa-right-from-bracket fa-2xl"></i>
+        </a>
+    </div>
 </body>
+
 </html>

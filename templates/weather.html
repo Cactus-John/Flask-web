@@ -7,14 +7,17 @@
     <title>{{ title }} Weather</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style-weather.css') }}" />
+    <script src="https://kit.fontawesome.com/6b0ea6f5c6.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-
+    <img class = "bgimage" src="../static/images/weatherbg.jpg"></img>
     <nav class="navbarContainer">
         <div class="navbar">
-            <a href="{{ url_for('home') }}">Home</a>
-            </div>
+            <a href="{{ url_for('home') }}">
+                <i class="fa-solid fa-house fa-2xl" style="color: #ffffff;"></i>
+            </a>
+        </div>
         </div>
     </nav>
 
@@ -41,7 +44,7 @@
     </div>
 
     <footer>
-        
+
     </footer>
 
 </body>

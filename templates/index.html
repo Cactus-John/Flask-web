@@ -24,12 +24,15 @@
     </h4>
     <nav class="navbarContainer">
       <div class="navbar">
-        <a href="{{url_for('home')}}">Home</a>
+        <a href="{{url_for('home')}}">
+          <i class="fa-solid fa-house fa-2xl" style="color: #fffaff;"></i>
+        </a>
         <div class="dropdown">
-          <button class="dropbtn">Weather</button>
-          <div class="dropdown-content">
-            <a href="{{url_for('get_weather')}}">Search Weather</a>
-          </div>
+          <button class="dropbtn">
+            <a href="{{url_for('get_weather')}}">
+              <i class="fa-solid fa-cloud fa-2xl" style="color: #fffaff;"></i>
+            </a>
+          </button>
         </div>
       </div>
     </nav>

@@ -4,25 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style-forms.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style-form.css')}}">
+    <script src="https://kit.fontawesome.com/6b0ea6f5c6.js" crossorigin="anonymous"></script>
     <title>Signup Page</title>
 </head>
 
 <body>
+    <div class = "navbar">
+        <a href="{{url_for('home')}}">
+            <i class="fa-solid fa-house fa-2xl" style="color: #e92fae;"></i>
+        </a>
+    </div>
+
     <h1>Sign Up</h1>
 
-    <form method="post" action="{{ url_for('signup') }}">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+    <div class = "form">
+        <form method="post" action="{{ url_for('signup') }}">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required></br>
 
-        <button type="submit">Sign Up</button>
-    </form>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required></br>
 
-    <a href="{{ url_for('login') }}">Already have an account? Log In</a>
-
+            <button type="submit">Sign Up</button></br>
+            <a href="{{ url_for('login') }}">Already have an account? Log In</a>
+        </form>    
+    </div>
 
 </body>
 

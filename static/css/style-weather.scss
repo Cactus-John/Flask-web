@@ -2,32 +2,46 @@
 $bodycolor: black;
 $textColorForFlexItems: white;
 $h1fontSize: 32px;
-/*Velicina fonta za h1 spremljena u varijablu */
 $h1color: red;
-/*Boja fonta za h1 spremljena u varijablu */
 $h1fontWeight: bolder;
-/*Debljina fonta za h1 spremljena u varijablu */
 $h1textShadow: 1px 1px 6px #ff0000;
-/*Sjena oko teksta crvene boje za h1 spremljena u varijablu*/
 $h1textAlign: center;
-/*Poravnanje sredisnje za h1 spremljeno u varijablu */
-
 $directionForflexItems: column;
-
 $paddingForFlexItems: .2%;
 
 body {
-  background: $bodycolor;
   perspective: none;
+}
+
+img {
+  margin-top: -13px;
+}
+
+button {
+  background-color: lightcoral;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.5s ease-in-out;
+  &:hover {
+    background: linear-gradient(to right, #3498db, #2ecc71);
+    border: none;
+    color: #ffffff;
+  }
 }
 
 :root {
   --bgcolor: red;
+  --textcolor: rgb(253, 118, 69);
 }
 
 .headerText {
   font-size: $h1fontSize;
-  color: var(--bgcolor);
+  color: var(--textcolor);
   font-weight: var;
   text-shadow: $h1textShadow;
   text-align: $h1textAlign;
@@ -51,16 +65,16 @@ body {
   flex-direction: column;
   flex-wrap: wrap;
   position: absolute;
-  margin-inline: 50%;
+  margin-inline: 30%;
   margin-block: auto;
-  top: 100px;
+  top: 23%;
   left: -100px;
   font: 1em sans-serif;
   font-style: oblique;
-  border-radius: .53%;
-  border-style: double;
-  border-color: red;
-  box-shadow: 0 0 0 10px #ccc, 0 0 0 20px #fff;
+  width: 55em;
+
+  filter: drop-shadow(2px 2px 10px red);
+  
 
   .flex-item1 {
     flex-direction: directionForflexItems;
@@ -90,16 +104,70 @@ body {
     padding: $paddingForFlexItems;
     -webkit-text-fill-color: $textColorForFlexItems;
     margin: 1%;
+    padding-top: 25px;
     text-align: center;
   }
 }
 
-@media only screen and (max-width:900px) {
+input {
+  border: 2px solid #3498db;
+  border-radius: 5px;
+  background-color: #ecf0f1;
+  padding: 10px;
+  color: #2c3e50;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease-in-out;
+  &:hover {
+    border-color: #e74c3c;
+    filter: drop-shadow(10px 10px 100px yellow);
+  }
+  &:focus {
+    outline: none;
+    border-color: lightcoral;
+    border-width: 25px;
+    box-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+    filter: drop-shadow(2px 2px 50px white);
+  }
+}
+
+
+@media only screen and (max-width: 510px) {
   .navbarContainer {
-    display: inline-block;
-    width: 100%;
-    top: 43px;
-    left:auto;
+    top: 5%;
+    left: 45%;
   }
 
+  .flex-container{
+    display: flex;
+    
+    position: absolute;
+    margin-left: 20%;
+    left: -60%;
+    
+    
+  }
 }
+
+@media only screen and (min-width: 511px) and (max-width: 920px) {
+ 
+  .navbarContainer {
+    top: 6%;
+    left: 42%;
+  }
+
+  .flex-container {
+    position: absolute;
+    top: 15%;
+    margin-left: 1%;
+    left:-120px;
+  }
+}
+
+/* Add more breakpoints as needed */
+@media only screen and (min-width: 1081px) {
+  
+  .flex-container {
+    /* Adjust styles for the flex container at this width */
+  }
+}
+

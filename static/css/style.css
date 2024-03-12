@@ -10,10 +10,12 @@ span {
   font-weight: bolder;
   text-shadow: 3px 3px 6px magenta;
   filter: blur(2px);
+  filter: contrast(100);
 }
 
 a {
   text-decoration: none;
+  padding-right: 15px;
 }
 
 h1 {
@@ -54,7 +56,6 @@ p {
 }
 
 .navbarContainer {
-  background-color: black;
   filter: hue-rotate(-0.25turn);
   /*outline: 3px solid red;*/
   position: absolute;
@@ -75,15 +76,14 @@ p {
   -webkit-text-size-adjust: initial;
 }
 .navbar a {
+  background-color: none;
+  color: none;
   float: left;
-  font-size: 19px;
-  font-weight: bolder;
-  color: whitesmoke;
+  font-size: 18px;
   text-align: center;
-  text-shadow: 3px 3px 6px wheat;
+  text-shadow: 3px 3px 1px yellow;
   padding: 14px 16px;
   margin: 0 14px;
-  text-decoration: none;
 }
 
 .dropdown {
@@ -91,16 +91,8 @@ p {
   overflow: hidden;
 }
 .dropdown .dropbtn {
-  font-size: 19px;
-  border: none;
-  outline: none;
-  color: whitesmoke;
-  font-weight: bolder;
-  text-shadow: 3px 3px 6px wheat;
-  padding: 14px 40px;
+  padding: 0px 20px;
   background-color: transparent;
-  font-family: inherit;
-  margin: 0;
 }
 
 @keyframes zoomInTextNavbar {
@@ -112,10 +104,31 @@ p {
   }
   100% {
     transform: scale(1.23, 1.23);
-    -webkit-text-stroke: 1.2px;
     -webkit-text-stroke-color: red;
   }
 }
+.navbar a:hover {
+  background-color: none;
+  animation-name: zoomInTextNavbar;
+  animation-duration: 1.2s;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+}
+
+.forms-navbar {
+  display: block;
+  position: absolute;
+  padding: 50px 10px 25px 30px;
+}
+.forms-navbar #link {
+  color: red;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.forms-navbar #link:hover {
+  color: wheat;
+  font-size: 24px;
+}
+
 @keyframes pulsingBackground {
   0% {
     background-color: #000;
@@ -150,38 +163,6 @@ p {
     transform: scale(1, 1);
   }
 }
-.navbar .dropdown:hover .dropbtn,
-.navbar a:hover {
-  background-color: none;
-  animation-name: zoomInTextNavbar;
-  animation-duration: 2s;
-  animation-play-state: inherit;
-  animation-fill-mode: forwards;
-  -webkit-animation-fill-mode: forwards;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  min-width: 160px;
-  z-index: 1;
-}
-.dropdown-content a {
-  float: none;
-  color: wheat;
-  background-color: black;
-  font: 1rem sans-serif;
-  font-weight: bold;
-  padding: 12px 16px;
-  display: block;
-  text-align: left;
-  margin-inline: auto;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
 button {
   background-color: darkred;
   filter: drop-shadow(2px 2px 15px red);
@@ -374,7 +355,7 @@ footer {
 #flex-footer-container #python :hover,
 #flex-footer-container #youtube :hover,
 #flex-footer-container #weather :hover {
-  filter: drop-shadow(2px 2px 10px red);
+  filter: drop-shadow(2px 2px 10px wheat);
   animation-name: zoomFooterIcons;
   animation-duration: 3s;
   animation-play-state: running;
@@ -382,18 +363,6 @@ footer {
 
 #flex-footer-design {
   padding: 25px;
-}
-
-.forms-navbar {
-  background-color: black;
-  display: ruby-base;
-  position: absolute;
-  top: 250px;
-  left: 25px;
-}
-.forms-navbar #link {
-  color: red;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 /* PHONE VIEW  - 900px screen size */

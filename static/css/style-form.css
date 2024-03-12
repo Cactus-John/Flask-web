@@ -1,8 +1,116 @@
 body {
-  background-image: -webkit-radial-gradient(white, lightblue, navy);
-  background-color: antiquewhite;
+  background-color: wheat;
+  overflow-x: hidden;
+}
+
+#body-dash {
+  background-color: black;
+}
+
+h1 {
+  text-align: center;
+  color: black;
+  position: relative;
+  top: 1%;
+  left: 2%;
+}
+
+h2 {
+  text-align: center;
+  color: lightcyan;
+  position: relative;
+  top: 1%;
+  left: 2%;
+}
+
+a {
+  text-decoration: none;
+  font: 1rem sans-serif;
+}
+
+.form {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin: 6%;
+  position: relative;
+  top: auto;
+  left: 2%;
+}
+
+label {
+  font: 1.2rem sans-serif;
+  font-weight: bold;
+}
+
+input {
+  color: red;
+}
+
+input[type=text] {
+  border: 2px solid red;
+  border-radius: 4px;
+  height: 25px;
+}
+
+input[type=password] {
+  border: 2px solid red;
+  border-radius: 4px;
+  height: 25px;
+}
+
+button {
+  width: 64px;
+  border: 2px solid red;
+  color: darkred;
+  position: relative;
+  left: 38%;
+}
+button:hover {
+  cursor: grab;
+  filter: drop-shadow(4px 4px 10px red);
+  outline: none;
+  border-radius: 3px;
+  border: 3px solid transparent;
 }
 
 form {
   display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  position: relative;
+  color: darkred;
+}
+
+.navbar {
+  display: block;
+  position: absolute;
+  top: 50px;
+  left: 77%;
+}
+
+#dashboard-nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  position: absolute;
+  top: 35%;
+  left: 35%;
+}
+#dashboard-nav a {
+  margin: 0 40px 0 0;
+}
+
+.user-text {
+  color: darkred;
+  font-weight: bold;
+  filter: drop-shadow(2px 2px 0px red);
+}
+
+.hover-link {
+  transition: transform 0.35s ease-in-out;
+}
+.hover-link:hover {
+  transform: scale(1.2);
+  filter: drop-shadow(2px 2px 0px lightcyan);
 }/*# sourceMappingURL=style-form.css.map */
