@@ -11,6 +11,17 @@
 </head>
 
 <body>
+    {% if 'user_id' in session %}
+        <div class="user-info">
+          <span class = "username-text">
+           {{ session['username'] }}
+          </span>
+            <span class="icon">
+              <i class="fas fa-user"></i>
+            </span>
+            
+        </div>
+    {% endif %}
     <img class = "bgimage" src="../static/images/weatherbg.jpg"></img>
     <nav class="navbarContainer">
         <div class="navbar">
@@ -42,11 +53,9 @@
             <div class="flex-item6"><button type="submit">Submit</button></div>
         </form>
     </div>
+    
 
-    <footer>
-
-    </footer>
-
+    
 </body>
 
 </html>

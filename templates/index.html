@@ -10,6 +10,19 @@
 </head>
 
 <body>
+
+    {% if 'user_id' in session %}
+        <div class="user-info">
+          <span class = "username-text">
+           {{ session['username'] }}
+          </span>
+            <span class="icon">
+              <i class="fas fa-user fa-2xl"></i>
+            </span>
+            
+        </div>
+    {% endif %}
+
   <div class="header">
     <div class="forms-navbar">
       <a id="link" href="{{url_for('signup')}}">SignUp</a>
@@ -31,6 +44,13 @@
           <button class="dropbtn">
             <a href="{{url_for('get_weather')}}">
               <i class="fa-solid fa-cloud fa-2xl" style="color: #fffaff;"></i>
+            </a>
+          </button>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">
+            <a href="{{url_for('play_music')}}">
+              <i class="fa-solid fa-music fa-2xl" style="color: #fffaff;"></i>
             </a>
           </button>
         </div>
@@ -117,14 +137,14 @@
             <div id="flex-footer-design">
               <div id="instagram">
                 <a href="https://www.instagram.com/ivan_bosnjak0/" target="_blank">
-                  <i class="fa-brands fa-instagram fa-2xl" style="color: #e9591c;"></i>
+                  <i class="fa-brands fa-instagram fa-2xl" style="color: #ff0000;"></i>
                 </a>
               </div>
             </div>
             <div id="flex-footer-design">
               <div id="python">
                 <a href="https://github.com/Cactus-John/Flask-web/blob/main/server.py" target="_blank">
-                  <i class="fa-brands fa-python fa-2xl" style="color: #6ee71d;"></i>
+                  <i class="fa-brands fa-python fa-2xl" style="color: #ff0000;"></i>
                 </a>
               </div>
             </div>
@@ -138,7 +158,7 @@
             <div id="flex-footer-design">
               <div id="weather">
                 <a href="{{url_for('get_weather')}}" target="_blank">
-                  <i class="fa-solid fa-cloud-bolt fa-2xl" style="color: yellow"></i>
+                  <i class="fa-solid fa-cloud-bolt fa-2xl" style="color: #ff0000"></i>
                 </a>
               </div>
             </div>

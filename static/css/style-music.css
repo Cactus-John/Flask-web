@@ -1,0 +1,192 @@
+body {
+  background-color: rgb(148, 101, 109);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+span {
+  color: darkmagenta;
+  font-weight: bolder;
+  text-shadow: 3px 3px 6px magenta;
+  filter: blur(2px);
+  filter: contrast(100);
+}
+span.username-text {
+  color: darkmagenta;
+  text-shadow: 3px 3px 25px magenta;
+  font-size: 24px;
+  position: relative;
+  top: auto;
+  left: 40%;
+}
+span.icon {
+  margin-left: 5px;
+  color: wheat;
+  position: relative;
+  top: auto;
+  left: 40%;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex: 1;
+  position: relative;
+  margin-bottom: auto;
+  top: auto;
+  left: auto;
+  padding: 15px;
+  background: conic-gradient(from 21.3416rad at 85% 1%, black, rgb(79, 1, 79));
+  border-radius: 5px;
+}
+
+h1 {
+  color: wheat;
+  text-shadow: 3px 3px 5px wheat;
+  position: absolute;
+  top: 5%;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  position: absolute;
+  top: 8%;
+  left: 5%;
+}
+nav a {
+  text-decoration: none;
+  text-shadow: 5px 5px 8px black;
+  position: absolute;
+  top: auto;
+  left: auto;
+}
+
+.album-art {
+  width: auto;
+  height: auto;
+  box-shadow: 5px 5px 10px red;
+  filter: drop-shadow(16px 16px 10px black);
+}
+
+#refresh-button {
+  display: block;
+  position: relative;
+  bottom: 60px;
+  left: 5;
+}
+
+#left-side {
+  display: grid;
+  position: relative;
+  top: auto;
+  right: 5px;
+  outline: 3px dashed yellow;
+}
+
+/* #left-side i #form-conatiner skupa postavit na lijevu marginu i odvojit stranicu na pola*/
+#form-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: absolute;
+  top: 10%;
+  left: 15%;
+}
+#form-container #item1 {
+  top: auto;
+}
+#form-container #item2,
+#form-container #item3,
+#form-container #item4 {
+  padding: 20px;
+  border: 3px solid yellow;
+}
+
+#song-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  top: auto;
+  left: 40%;
+  /*#position1,
+  #position2,
+  #position3,
+  #position4,
+  #position5 {
+    flex: 1;
+
+    outline: 3px solid yellow;
+  } */
+}
+#song-container h2 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: larger;
+  color: rgb(230, 2, 255);
+  font-weight: bolder;
+  text-shadow: 10px 10px 8px black;
+  filter: drop-shadow(5px 5px 10px black);
+}
+
+.invisible-button {
+  background-color: rgb(148, 101, 109);
+  border: none;
+  border-left: none;
+}
+
+#button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white; /* Set background color */
+  color: #333; /* Set text color */
+}
+select option {
+  background-color: pink;
+  color: #333;
+}
+
+@media only screen and (max-width: 900px) {
+  #form-container {
+    position: absolute;
+    top: 15%;
+    left: 24%;
+    right: auto;
+    width: 100%;
+  }
+  nav {
+    top: 5%;
+    bottom: auto;
+    left: auto;
+  }
+  h1 {
+    font-size: 20px;
+    bottom: auto;
+  }
+  button {
+    width: 100%;
+    height: auto;
+  }
+  #song-container {
+    left: auto;
+    bottom: 40px;
+  }
+  option {
+    max-width: 40px;
+  }
+}/*# sourceMappingURL=style-music.css.map */

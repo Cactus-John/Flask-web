@@ -12,6 +12,21 @@ span {
   filter: blur(2px);
   filter: contrast(100);
 }
+span.username-text {
+  color: darkmagenta;
+  text-shadow: 3px 3px 25px magenta;
+  font-size: 24px;
+  position: relative;
+  top: auto;
+  left: 45%;
+}
+span.icon {
+  margin-left: 5px;
+  color: wheat;
+  position: relative;
+  top: auto;
+  left: 45%;
+}
 
 a {
   text-decoration: none;
@@ -53,6 +68,21 @@ p {
   font-weight: 1rem;
   font-family: Arial, Helvetica, sans-serif;
   filter: drop-shadow(2px 2px 4px darkmagenta);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex: 1;
+  position: relative;
+  margin-top: -8px;
+  top: auto;
+  left: auto;
+  padding: 15px;
+  background: conic-gradient(from 21.3416rad at 85% 1%, black, rgb(79, 1, 79));
+  border-radius: 5px;
 }
 
 .navbarContainer {
@@ -121,11 +151,12 @@ p {
   padding: 50px 10px 25px 30px;
 }
 .forms-navbar #link {
-  color: red;
+  color: white;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .forms-navbar #link:hover {
-  color: wheat;
+  color: darkmagenta;
+  filter: contrast(100);
   font-size: 24px;
 }
 
@@ -221,11 +252,13 @@ footer {
 }
 
 .parallax-section1 {
-  background-image: url("../images/python.jpg");
+  background-image: url("../images/blackbg.jpg");
+  filter: contrast(10);
 }
 
 .parallax-section2 {
-  background-image: url("../images/python2.jpg");
+  background-image: url("../images/orangebg.jpg");
+  filter: contrast(5);
 }
 
 .section-flex-container {
@@ -258,6 +291,7 @@ footer {
 }
 
 .section-design1, .section-design2, .section-design3 {
+  background-image: url("../images/blackbg.jpg");
   background-color: rgb(32, 2, 2);
   border-radius: 8px;
   box-shadow: 0.9px 0.9px 20px white;
@@ -274,47 +308,27 @@ footer {
   animation-composition: inherit;
 }
 .section-design1.section-design1:hover, .section-design2.section-design1:hover, .section-design3.section-design1:hover {
-  background-image: url("../images/python2.jpg");
+  background-image: url("../images/orangebg.jpg");
 }
 .section-design1.section-design1:hover p, .section-design2.section-design1:hover p, .section-design3.section-design1:hover p {
-  color: lightgreen;
+  color: darkred;
+  text-shadow: 2px 2px 0px black;
   font-weight: bold;
-}
-.section-design1.section-design1:hover button, .section-design2.section-design1:hover button, .section-design3.section-design1:hover button {
-  background-color: lightgreen;
 }
 .section-design1.section-design2:hover, .section-design2.section-design2:hover, .section-design3.section-design2:hover {
-  background-image: url("../images/android.jpg");
-  animation: zoomingBackground;
-  animation-play-state: running;
-  animation-duration: 10s;
-  animation-iteration-count: infinite;
-  animation-fill-mode: forwards;
-  animation-composition: inherit;
+  background-image: url("../images/bluebg.jpg");
 }
 .section-design1.section-design2:hover p, .section-design2.section-design2:hover p, .section-design3.section-design2:hover p {
-  color: #2effc0;
+  color: #28c193;
+  text-shadow: 2px 2px 1px black;
   font-weight: bold;
 }
-.section-design1.section-design2:hover button, .section-design2.section-design2:hover button, .section-design3.section-design2:hover button {
-  background-color: #2effc0;
-}
 .section-design1.section-design3:hover, .section-design2.section-design3:hover, .section-design3.section-design3:hover {
-  background-image: url("../images/weather.jpg");
-  animation: zoomingBackground;
-  animation-play-state: running;
-  animation-duration: 10s;
-  animation-iteration-count: infinite;
-  animation-fill-mode: forwards;
-  animation-composition: inherit;
+  background-image: url("../images/blackwhitebg.jpg");
 }
 .section-design1.section-design3:hover p, .section-design2.section-design3:hover p, .section-design3.section-design3:hover p {
-  color: black;
-  filter: none;
-}
-.section-design1.section-design3:hover button, .section-design2.section-design3:hover button, .section-design3.section-design3:hover button {
-  background-color: white;
-  color: gray;
+  color: rgb(193, 186, 186);
+  text-shadow: 2px 2px 1px black;
 }
 
 @keyframes zoomFooterIcons {

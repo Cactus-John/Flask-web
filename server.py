@@ -1,15 +1,8 @@
 from flask import Flask, render_template, request, url_for, redirect, session, flash
 from weather import get_current_weather
-from waitress import serve
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user
-from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import DataRequired, Length, ValidationError
-from flask_bcrypt import Bcrypt
 from dotenv import load_dotenv
-
 import sqlite3 as sql
+import pygame
 
 load_dotenv()
 
@@ -34,22 +27,29 @@ def signup():
             username = request.form['username']
             password = request.form['password']
 
+            # Check if the username already exists
             with sql.connect("db_users.db") as con:
                 cur = con.cursor()
-                cur.execute("INSERT INTO users "
-                            "(username, password) "
-                            "VALUES (?, ?)", 
-                            (username, password)
-                )
+                cur.execute("SELECT * FROM users WHERE username = ?", (username,))
+                existing_user = cur.fetchone()
+
+                if existing_user:
+                    flash('Account with this username already exists. Please choose a different username.', 'error')
+                    return render_template("signup.html")
+
+                # If the username doesn't exist, proceed with signup
+                cur.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
                 con.commit()
 
                 # Log in the user after successful signup
                 cur.execute("SELECT * FROM users WHERE username = ? AND password = ?", (username, password))
                 user = cur.fetchone()
 
+
                 if user:
                     # Store user_id in the session to mark them as logged in
                     session['user_id'] = user[0]
+                    session['username'] = username
                     flash('Signup and login successful', 'success')
                     return redirect(url_for('dashboard'))
 
@@ -78,8 +78,10 @@ def login():
                 if user:
                     # Log in the user by storing their ID in the session
                     session['user_id'] = user[0]
+                    session['username'] = username
                     flash('Login successful', 'success')
                     return redirect(url_for('dashboard'))
+                
                 else:
                     flash('Invalid username or password', 'error')
 
@@ -93,6 +95,7 @@ def login():
 @app.route("/dashboard")
 def dashboard():
     if 'user_id' in session:
+        username = session['username']
         # Retrieve user information from the database using the session ID
         with sql.connect("db_users.db") as con:
             cur = con.cursor()
@@ -100,7 +103,7 @@ def dashboard():
             user = cur.fetchone()
 
         if user:
-            return render_template("dashboard.html", user=user)
+            return render_template("dashboard.html", user=user, username=username)
 
     # If user is not logged in, redirect to the login page
     flash('You need to login first', 'error')
@@ -116,13 +119,147 @@ def logout():
 
 #-----------------------------------------------------------------------------------------#
     
+
+
+
+#----------------------------------- MUSIC HANDLER ---------------------------------------#
+
+
+
+currently_playing = None
+is_paused = False
+is_playing = False
+
+def play_song(song_path):
+    pygame.mixer.init()
+
+    try:
+
+        print(f"Playing song: {song_path}")
+        pygame.mixer.music.load(song_path)
+        pygame.mixer.music.play()
+
+    except pygame.error as e:
+
+        print(f"Error playing song: {e}")
+
+
+@app.route('/music', methods=['GET', 'POST'])
+
+def play_music():
+
+    global currently_playing, is_paused, is_playing
+    
+    selected_song = None
+    song_path = None
+    
+    album_image_path = ["../static/images/bbtm.png",
+                        "../static/images/starboy.png"]
+
+    songs = ["TheWeeknd_TheHills.mp3",
+             "TheWeeknd_PartyMonster.mp3"]
+    
+    album_art = {
+        songs[0]: album_image_path[0],
+        songs[1]: album_image_path[1],
+    }
+
+    def get_album_image(song_name):
+        return album_art.get(song_name, 'default-image.jpg') 
+    
+    pygame.init()
+    pygame.mixer.init()
+    
+    if request.method == 'POST':
+
+        selected_song = request.form.get('selected_song')
+        song_path = f"static/music/{selected_song.strip()}"
+
+        current_song_name = selected_song
+        album_image_path = get_album_image(current_song_name)
+
+        pygame.init()
+        pygame.mixer.init()
+        
+        if request.form.get('play') == 'Play':
+
+            # provjera ako muzika jos nije playana
+            
+            if not is_playing:  
+                pygame.mixer.music.load(song_path)
+                pygame.mixer.music.play()
+                is_playing = True
+                is_paused = False
+            
+        if request.form.get('restart') == 'true':
+            
+            #restartaj pjsemu ispocetka na restart 
+            
+            if currently_playing:
+
+                pygame.mixer.music.rewind()
+                pygame.mixer.music.play()
+                is_paused = False
+               
+
+        if currently_playing and currently_playing == song_path:
+            
+            #play i pause
+            
+            if is_paused:
+
+                pygame.mixer.music.unpause()
+                is_paused = False
+                return render_template('music.html', 
+                                       songs=songs, 
+                                       current_song_name=selected_song,
+                                       album_image_path=album_image_path)
+               
+            else:
+
+                pygame.mixer.music.pause()
+                is_paused = True
+                return render_template('music.html', 
+                                       songs=songs, 
+                                       current_song_name=selected_song,
+                                       album_image_path=album_image_path)
+                
+        else:
+        
+            if currently_playing:
+                pygame.mixer.music.stop()
+
+            play_song(song_path)
+            currently_playing = song_path
+            is_paused = False
+            return render_template('music.html', 
+                                    songs=songs, 
+                                    current_song_name=selected_song,
+                                    album_image_path=album_image_path)
     
     
+    return render_template('music.html', 
+                           songs=songs, 
+                           current_song_name=None,
+                           album_image_path=album_image_path)
+    
+    
+    
+ #-----------------------------------------------------------------------------------------#
+ 
+
+
 #---------------------------------------- WEATHER REQUESTS -------------------------------#
         
 @app.route('/')
 def home():
-    return render_template('index.html')
+    print(session)
+    if 'user_id' in session:
+        user_id = session['user_id']
+        username = session['username']
+        return render_template("index.html", user_id=user_id, username=username)
+    else:
+        return render_template("index.html")
 
 @app.route('/weather', methods=['GET', 'POST'])
 
