@@ -168,7 +168,6 @@ def play_music():
         return album_art.get(song_name, 'default-image.jpg') 
     
     pygame.init()
-    pygame.mixer.init()
     
     if request.method == 'POST':
 
