@@ -120,134 +120,6 @@ def logout():
 #-----------------------------------------------------------------------------------------#
     
 
-
-
-#----------------------------------- MUSIC HANDLER ---------------------------------------#
-
-
-
-currently_playing = None
-is_paused = False
-is_playing = False
-
-def play_song(song_path):
-    pygame.mixer.init()
-
-    try:
-
-        print(f"Playing song: {song_path}")
-        pygame.mixer.music.load(song_path)
-        pygame.mixer.music.play()
-
-    except pygame.error as e:
-
-        print(f"Error playing song: {e}")
-
-
-@app.route('/music', methods=['GET', 'POST'])
-
-def play_music():
-
-    global currently_playing, is_paused, is_playing
-    
-    selected_song = None
-    song_path = None
-    
-    album_image_path = ["../static/images/bbtm.png",
-                        "../static/images/starboy.png"]
-
-    songs = ["TheWeeknd_TheHills.mp3",
-             "TheWeeknd_PartyMonster.mp3"]
-    
-    album_art = {
-        songs[0]: album_image_path[0],
-        songs[1]: album_image_path[1],
-    }
-
-    def get_album_image(song_name):
-        return album_art.get(song_name, 'default-image.jpg') 
-    
-    pygame.init()
-    
-    if request.method == 'POST':
-
-        selected_song = request.form.get('selected_song')
-        song_path = f"static/music/{selected_song.strip()}"
-
-        current_song_name = selected_song
-        album_image_path = get_album_image(current_song_name)
-
-        pygame.init()
-        pygame.mixer.init()
-        
-        if request.form.get('play') == 'Play':
-
-            # provjera ako muzika jos nije playana
-            
-            if not is_playing:  
-                pygame.mixer.music.load(song_path)
-                pygame.mixer.music.play()
-                is_playing = True
-                is_paused = False
-            
-        if request.form.get('restart') == 'true':
-            
-            #restartaj pjsemu ispocetka na restart 
-            
-            if currently_playing:
-
-                pygame.mixer.music.rewind()
-                pygame.mixer.music.play()
-                is_paused = False
-               
-
-        if currently_playing and currently_playing == song_path:
-            
-            #play i pause
-            
-            if is_paused:
-
-                pygame.mixer.music.unpause()
-                is_paused = False
-                return render_template('music.html', 
-                                       songs=songs, 
-                                       current_song_name=selected_song,
-                                       album_image_path=album_image_path)
-               
-            else:
-
-                pygame.mixer.music.pause()
-                is_paused = True
-                return render_template('music.html', 
-                                       songs=songs, 
-                                       current_song_name=selected_song,
-                                       album_image_path=album_image_path)
-                
-        else:
-        
-            if currently_playing:
-                pygame.mixer.music.stop()
-
-            play_song(song_path)
-            currently_playing = song_path
-            is_paused = False
-            return render_template('music.html', 
-                                    songs=songs, 
-                                    current_song_name=selected_song,
-                                    album_image_path=album_image_path)
-    
-    
-    return render_template('music.html', 
-                           songs=songs, 
-                           current_song_name=None,
-                           album_image_path=album_image_path)
-    
-    
-    
- #-----------------------------------------------------------------------------------------#
- 
-
-
 #---------------------------------------- WEATHER REQUESTS -------------------------------#
         
 @app.route('/')
@@ -264,7 +136,10 @@ def home():
 
 def get_weather():
     city = request.args.get('city')
-    
+    songs = [
+    'static/music/TheWeeknd_PartyMonster.mp3',
+    'static/music/TheWeeknd_TheHills.mp3'
+    ];
     # Handlea prazan string ili razmake
     if city is not None and not bool(city.strip()):
         city = "Samobor"
@@ -277,6 +152,7 @@ def get_weather():
 
     return render_template (
         "weather.html",
+        songs=songs,
         title=weather_data["name"],
         status=weather_data["weather"][0]["description"].capitalize(),
         temp=f"{weather_data['main']['temp']:.1f}",

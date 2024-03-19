@@ -17,9 +17,10 @@
            {{ session['username'] }}
           </span>
             <span class="icon">
-              <i class="fas fa-user fa-2xl"></i>
+              <a style="color: white;" href = "{{url_for('dashboard')}}">
+                <i class="fas fa-user fa-2xl"></i>
+              </a>
             </span>
-            
         </div>
     {% endif %}
 
@@ -44,13 +45,6 @@
           <button class="dropbtn">
             <a href="{{url_for('get_weather')}}">
               <i class="fa-solid fa-cloud fa-2xl" style="color: #fffaff;"></i>
-            </a>
-          </button>
-        </div>
-        <div class="dropdown">
-          <button class="dropbtn">
-            <a href="{{url_for('play_music')}}">
-              <i class="fa-solid fa-music fa-2xl" style="color: #fffaff;"></i>
             </a>
           </button>
         </div>

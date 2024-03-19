@@ -6,6 +6,11 @@ img {
   margin-top: -13px;
 }
 
+#album-img {
+  box-shadow: 5px 5px 10px black;
+  filter: drop-shadow(5px 2px 32px rgb(255, 52, 231));
+}
+
 button {
   background-color: lightcoral;
   display: inline-block;
@@ -42,11 +47,44 @@ button:hover {
   position: absolute;
   align-items: center;
   flex-direction: row;
-  right: 245px;
+  top: 120px;
+  right: 205px;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+.container .left-section {
+  flex: 1;
+  background: url("../images/orangebg.jpg");
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  position: relative;
+  top: 1;
+  outline: 3px solid yellow;
+}
+.container .grid-item {
+  outline: 3px solid yellow;
+  background-color: white;
+  padding: 50px;
+  text-align: center;
+}
+
+audio {
+  width: 100%;
+  max-width: 290px; /* Set maximum width as needed */
+  color: red;
+  -webkit-text-fill-color: red;
+  font-weight: bolder;
+  margin: 0 auto; /* Center the audio player */
+  box-shadow: 5px 5px 10px rgb(170, 69, 159);
+  filter: drop-shadow(1px 15px 1px rgb(255, 31, 233));
 }
 
 .flex-container {
-  /*Flex container koji sadrzi ispisane informacije o vremenskim podatcima nekog mjesta */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,6 +132,7 @@ input {
   border: 2px solid #3498db;
   border-radius: 5px;
   background-color: #ecf0f1;
+  caret-color: red;
   padding: 10px;
   color: #2c3e50;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -102,13 +141,6 @@ input {
 input:hover {
   border-color: #e74c3c;
   filter: drop-shadow(10px 10px 100px yellow);
-}
-input:focus {
-  outline: none;
-  border-color: lightcoral;
-  border-width: 25px;
-  box-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
-  filter: drop-shadow(2px 2px 50px white);
 }
 
 @media only screen and (max-width: 510px) {

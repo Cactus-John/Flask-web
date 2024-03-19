@@ -11,18 +11,34 @@
 </head>
 
 <body>
+    
     {% if 'user_id' in session %}
-        <div class="user-info">
-          <span class = "username-text">
-           {{ session['username'] }}
-          </span>
-            <span class="icon">
-              <i class="fas fa-user"></i>
-            </span>
-            
-        </div>
+    <div class="user-info">
+        <span class="username-text">
+            {{ session['username'] }}
+        </span>
+        <span class="icon">
+            <i class="fas fa-user"></i>
+        </span>
+
+    </div>
     {% endif %}
-    <img class = "bgimage" src="../static/images/weatherbg.jpg"></img>
+   
+    <div class="container">
+        <div class="left-section">
+            <!-- Grid content goes here -->
+            
+            <div class="grid-item">
+                <img id="album-img" src="../static/images/pinktape.png">
+                
+                <audio id="audioPlayer" controls>
+                    <source src="../static/music/TheWeeknd_PartyMonster.mp3" type="audio/mp3">
+                    
+                </audio>
+                
+            </div>
+        </div>
+    </div>
     <nav class="navbarContainer">
         <div class="navbar">
             <a href="{{ url_for('home') }}">
@@ -31,6 +47,8 @@
         </div>
         </div>
     </nav>
+
+
 
     <div class="flex-container">
         <div class="flex-item1">
@@ -53,9 +71,14 @@
             <div class="flex-item6"><button type="submit">Submit</button></div>
         </form>
     </div>
-    
 
-    
+    <script>
+        function playSong(songUrls) { 
+            var audio = new Audio(songUrls);
+            audio.play();
+        }
+    </script>
+
 </body>
 
 </html>
