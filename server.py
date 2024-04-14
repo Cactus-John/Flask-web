@@ -1,8 +1,7 @@
-from flask import Flask, render_template, request, url_for, redirect, session, flash
+from flask import Flask, render_template, request, url_for, redirect, session, flash, jsonify
 from weather import get_current_weather
 from dotenv import load_dotenv
 import sqlite3 as sql
-import pygame
 
 load_dotenv()
 
@@ -132,14 +131,13 @@ def home():
     else:
         return render_template("index.html")
 
+
+
 @app.route('/weather', methods=['GET', 'POST'])
 
 def get_weather():
     city = request.args.get('city')
-    songs = [
-    'static/music/TheWeeknd_PartyMonster.mp3',
-    'static/music/TheWeeknd_TheHills.mp3'
-    ];
+
     # Handlea prazan string ili razmake
     if city is not None and not bool(city.strip()):
         city = "Samobor"
@@ -150,9 +148,9 @@ def get_weather():
     if not weather_data['cod'] == 200:
         return render_template('city_not_found.html')
 
+
     return render_template (
         "weather.html",
-        songs=songs,
         title=weather_data["name"],
         status=weather_data["weather"][0]["description"].capitalize(),
         temp=f"{weather_data['main']['temp']:.1f}",
@@ -160,10 +158,9 @@ def get_weather():
         feels_like=f"{weather_data['main']['feels_like']:.1f}"
     )
     
+    
+    
 #-----------------------------------------------------------------------------------------#
 
 if __name__ == "__main__":
-    
-    #serve(app, host="0.0.0.0", port=8000)
-    
     app.run(host="0.0.0.0", port=8000, debug=True)

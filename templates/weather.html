@@ -8,13 +8,15 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style-weather.css') }}" />
     <script src="https://kit.fontawesome.com/6b0ea6f5c6.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxjWux8Hz1L5m6yQuFrY7m1DGcUrgUmow&callback=initMap"></script>
 
 </head>
 
-<body>
-
+<body onload="initMap()">
     {% if 'user_id' in session %}
-    <div class="user-info">
+    <div class="user-info1">
         <span class="username-text">
             {{ session['username'] }}
         </span>
@@ -24,74 +26,63 @@
 
     </div>
     {% endif %}
-
+    
     <div class="container">
         <div class="left-section">
-            <div class="grid-item">
-                <img id="album-img" src="../static/images/pinktape.png">
-
-                <audio id="myAudio" controls onended="playNext()">
-
-                    <source src="../static/music/Rehab.mp3" type="audio/mp3">
-                    <source src="../static/music/FloodedTheFace.mp3" type="audio/mp3">
-                    <source src="../static/music/DaysComeAndGo.mp3" type="audio/mp3">
-                </audio>
-
-            </div>
+            <img src="../static/images/weather.jpg">
         </div>
     </div>
 
     <nav class="navbarContainer">
+        <h1>Weather Forecast</h1>
         <div class="navbar">
+            <h2>{{ title }} : {{ temp }} &deg;C</h2>
             <a href="{{ url_for('home') }}">
                 <i class="fa-solid fa-house fa-2xl" style="color: #ffffff;"></i>
             </a>
         </div>
         </div>
     </nav>
-
-
-
+    
     <div class="flex-container">
-        <div class="flex-item1">
-            <p class="headerText"> {{ title }} Weather</p>
-        </div>
-        <div class="flex-item2">
-            <p> {{ status }} </p>
-        </div>
-        <div class="flex-item3">
-            <p> {{ temp }} &deg;C </p>
-        </div>
-        <img src="https://openweathermap.org/img/wn/{{icon}}.png" alt="weather slika">
-        <div class="flex-item4">
-            <p> Feels like {{ feels_like }} &deg;</p>
+        
+            <div class="flex-item1">
+                <p class="headerText"> {{ title }} Weather</p>
+            </div>
+            <div class="flex-item2">
+                <p> {{ status }} </p>
+            </div>
+            <div class="flex-item3">
+                <p> {{ temp }} &deg;C </p>
+            </div>
+            <img src="https://openweathermap.org/img/wn/{{icon}}.png" alt="weather slika">
+            <div class="flex-item4">
+                <p> Feels like {{ feels_like }} &deg;</p>
 
-        </div>
+            </div>
 
-        <form action="/weather">
-            <div class="flex-item5"><input type="text" name="city" id="city" placeholder="Enter a City" /></div>
-            <div class="flex-item6"><button type="submit">Submit</button></div>
-        </form>
+            <form action="/weather">
+                <div class="flex-item5"><input type="text" name="city" id="city" placeholder="Enter a City" /></div>
+                <div class="flex-item6"><button type="submit" name="search-btn">Submit</button></div>
+            </form>
+            
     </div>
 
+    {% if 'user_id' in session %}
+        <div id="map"></div>
+    {% endif %}
+
+    
     <script>
-
-        var audioIndex = 0;
-        var audioSources = document.getElementById('myAudio').getElementsByTagName('source');
-        var audioElement = document.getElementById('myAudio');
-
-        function playNext() {
-            audioIndex++;
-            if (audioIndex >= audioSources.length) {
-                audioIndex = 0;
-            }
-
-            audioElement.src = audioSources[audioIndex].src;
-            audioElement.play();
+        function initMap() {
+          var mapOptions = {
+            center: { lat: 45.804, lng: 15.720 },
+            zoom: 9,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+          var map = new google.maps.Map(document.getElementById('map'), mapOptions);
         }
-        
     </script>
-
 </body>
 
 </html>

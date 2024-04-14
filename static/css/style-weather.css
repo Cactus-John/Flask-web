@@ -2,13 +2,60 @@ body {
   perspective: none;
 }
 
-img {
-  margin-top: -13px;
+#map {
+  height: 600px;
+  width: 70%;
+  position: fixed;
+  top: -200px;
+  left: 250px;
 }
 
-#album-img {
-  box-shadow: 5px 5px 10px black;
-  filter: drop-shadow(5px 2px 32px rgb(255, 52, 231));
+h1 {
+  background-color: rgb(124, 192, 214);
+  display: inline-block;
+  box-shadow: 5px 5px 15px black;
+  text-align: center;
+  color: orange;
+  font-weight: bolder;
+  text-shadow: 3px 3px 6px red;
+  position: absolute;
+  filter: blur(1px);
+  filter: contrast(2);
+  filter: drop-shadow(1px 1px 3px black);
+  top: 10px;
+  left: 620px;
+}
+
+h2 {
+  display: inline-block;
+  text-align: start;
+  font-weight: bolder;
+  letter-spacing: 2px;
+  filter: drop-shadow(1px 1px 0px white);
+  font-size: 36px;
+  padding-left: 10px;
+  -webkit-text-fill-color: orange;
+  font-weight: bolder;
+}
+
+img {
+  margin-top: -150px;
+  margin: auto;
+}
+
+.user-info1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex: 1;
+  position: relative;
+  margin-top: 100px;
+  top: auto;
+  left: auto;
+  padding: 15px;
+  background: conic-gradient(from 21.3416rad at 58.2% 1%, rgb(0, 191, 255), rgb(2, 52, 79));
+  border-radius: 5px;
 }
 
 button {
@@ -47,8 +94,21 @@ button:hover {
   position: absolute;
   align-items: center;
   flex-direction: row;
-  top: 120px;
-  right: 205px;
+  top: 0px;
+  left: 0px;
+  height: 40px;
+  width: 100px;
+  background-color: lightblue;
+  height: 100px;
+  width: 1920px;
+  filter: drop-shadow(5px 5px 20px rgb(127, 121, 117));
+}
+.navbarContainer a {
+  position: relative;
+  left: 1400px;
+  top: 25px;
+  -webkit-text-fill-color: rgb(244, 100, 3);
+  text-shadow: 3px 3px 6px darkred;
 }
 
 .container {
@@ -58,30 +118,21 @@ button:hover {
 }
 .container .left-section {
   flex: 1;
-  background: url("../images/orangebg.jpg");
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 10px;
   position: relative;
   top: 1;
-  outline: 3px solid yellow;
+  /*outline: 3px solid yellow;*/
 }
 .container .grid-item {
-  outline: 3px solid yellow;
-  background-color: white;
+  /*outline: 3px solid red;*/
+  background: url("../images/grid.jpeg");
   padding: 50px;
   text-align: center;
 }
-
-audio {
-  width: 100%;
-  max-width: 290px; /* Set maximum width as needed */
-  color: red;
-  -webkit-text-fill-color: red;
-  font-weight: bolder;
-  margin: 0 auto; /* Center the audio player */
-  box-shadow: 5px 5px 10px rgb(170, 69, 159);
-  filter: drop-shadow(1px 15px 1px rgb(255, 31, 233));
+.container .grid-item .grid-item::after {
+  filter: blur(3px);
 }
 
 .flex-container {
@@ -141,6 +192,13 @@ input {
 input:hover {
   border-color: #e74c3c;
   filter: drop-shadow(10px 10px 100px yellow);
+}
+
+bottom-section {
+  display: flex;
+  position: absolute;
+  top: 500px;
+  left: 250px;
 }
 
 @media only screen and (max-width: 510px) {
