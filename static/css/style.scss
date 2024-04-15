@@ -433,7 +433,6 @@ footer {
 
 @media only screen and (max-width: 900px) {
   
-
   h1 {
     font-size: medium;
     top: 188px;
@@ -443,7 +442,8 @@ footer {
 
   h4 {
     top: 405px;
-    left: 111px;
+    left: 31px;
+    right: 40px;
   }
 
   p {
@@ -465,15 +465,14 @@ footer {
   
 
   .navbarContainer {
-    display: flex;
-    position: absolute;
-    flex-direction: row;
-    flex-wrap: nowrap;
     top:50px;
-    left:50px;
+    left:120px;
   }
 
   .navbar {
+    position: relative;
+    top:40px;
+    left:10px;
     .dropdown:hover .dropbtn,
     a:hover {
       background-color: none;
@@ -489,9 +488,64 @@ footer {
     background-color: black;
   }
 
+  .section-flex-container{
+    display: flex;
+    padding: none;
+    align-items: center;
+    flex-direction: column;
+  }
+
   .flex-section {
     display: block;
   }
 
+  .parallax-container {
+    height: 200vh;
+    overflow: hidden;
+    position: relative;
+  }
+  #flex-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: auto;
+    width: auto;
+    height: 200vh;
+  }
+}
+
+@media only screen and (min-width: 901px) and (max-width: 1440px) {
+
+  h1 {
+    font-size: medium;
+    top: 188px;
+    left: 40px;
+    right: 40px;
+  }
+
+  h4 {
+    top: 405px;
+    left: 31px;
+    right: 40px;
+  }
+
+  .navbarContainer {
+    top: 50px;
+    left: 380px;
+  }
+
+  .navbar {
+    position: relative;
+    top:40px;
+    left:10px;
+  }
+  #flex-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: auto;
+    width: auto;
+    height: 200vh;
+  }
 }
 
