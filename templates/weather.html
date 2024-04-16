@@ -15,6 +15,7 @@
 </head>
 
 <body onload="initMap()">
+    <img id ="bgimg" src="../static/images/weather.jpg">
     {% if 'user_id' in session %}
     <div class="user-info1">
         <span class="username-text">
@@ -22,22 +23,17 @@
         </span>
         <span class="icon">
             <i class="fas fa-user"></i>
-        </span>
-
+        </span> 
     </div>
     {% endif %}
     
-    <div class="container">
-        <div class="left-section">
-            <img src="../static/images/weather.jpg">
-        </div>
-    </div>
+    
 
     <nav class="navbarContainer">
         <h1>Weather Forecast</h1>
         <div class="navbar">
             <h2>{{ title }} : {{ temp }} &deg;C</h2>
-            <a href="{{ url_for('home') }}">
+            <a href="{{ url_for('home') }} ">
                 <i class="fa-solid fa-house fa-2xl" style="color: #ffffff;"></i>
             </a>
         </div>

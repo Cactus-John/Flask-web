@@ -11,30 +11,38 @@ $paddingForFlexItems: .2%;
 
 body {
   perspective: none;
+  background: url("../images/red-glowing-weather-4k-qj-1920x1080.jpg");
 }
+
+img {
+  height: auto;
+  width: auto;
+}
+
+#bgimg {
+  height: 100%;
+  width: 100%;
+  margin-bottom:-10px;
+}
+
 #map {
   height: 600px;
   width: 70%;
   position: fixed;
   top: -200px;
   left: 250px;
+  box-shadow: 42px 32px 84px red;
+  filter: drop-shadow(12px 12px 24px black);
 }
 
 h1 {
-  background-color: rgb(124, 192, 214);
-  display: inline-block;
-  box-shadow: 5px 5px 15px black;
-  text-align: center;
-  color: orange;
-  font-weight: bolder;
-  text-shadow: 3px 3px 6px red;
   position: absolute;
   filter: blur(1px);
   filter:contrast(2);
-  filter: drop-shadow(1px 1px 3px black);
-  top: 10px;
-  left: 620px;
-  
+  filter: drop-shadow(24px 24px 12px rgb(0, 0, 0));
+  top: -20px;
+  left: 625px;
+  color: rgb(211, 182, 182);
 }
 
 h2 {
@@ -46,35 +54,33 @@ h2 {
   filter: drop-shadow(1px 1px 0px white);
   font-size: 36px;
   padding-left: 10px;
-  -webkit-text-fill-color: orange;
+  -webkit-text-fill-color: darkmagenta;
   font-weight: bolder;
+  text-shadow: 3px 3px 6px magenta;
+  font-weight: bolder;
+  position: relative;
+  left: 100px;
 }
 
-img {
-  margin-top: -150px;
-  margin: auto;
-  
-}
+
 
 .user-info1 {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content:center;
   flex-direction: row;
   flex: 1;
-  position: relative;
-  margin-top: 100px;
-  top: auto;
-  left: auto;
+  position: absolute;
+  top: 100px;
+  left: 1425px;
+  width: 250px;
   padding: 15px;
-  background: conic-gradient(from 21.3416rad at 58.2% 1%, rgb(0, 191, 255), rgb(2, 52, 79));
+  padding-right: 55px;
+  background: conic-gradient(from 21.3416rad at 39.4% 1%, rgba(171, 3, 62, 0.566), rgb(25, 23, 23));
 
   border-radius: 5px;
-
+  filter: contrast(5);
 }
-
-
-
 
 button {
   background-color: lightcoral;
@@ -118,48 +124,20 @@ button {
   left: 0px;
   height: 40px;
   width: 100px;
-  background-color: lightblue;
+  background: conic-gradient(from 21.3416rad at 39.4% 1%, rgb(190, 5, 5), rgb(203, 10, 100), );
   height: 100px;
-  width:1920px;
+  width: 1920px;
   filter: drop-shadow(5px 5px 20px rgb(127, 121, 117));
 
-  a {
-    position: relative;
-    left: 1400px;
-    top: 25px;
-    -webkit-text-fill-color: rgb(244, 100, 3);
-    text-shadow: 3px 3px 6px darkred;
-  }
+  
 }
 
-.container {
-  display: flex;
-  width: 100%;
-  height: 100vh; 
-  
-  .left-section {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); 
-    gap: 10px; 
-    position: relative;
-    top: 1;
-    /*outline: 3px solid yellow;*/
-  }
-
-  .grid-item {
-    
-    /*outline: 3px solid red;*/
-    background:url("../images/grid.jpeg");
-    
-    padding: 50px;
-    text-align: center;
-
-    .grid-item::after{
-      filter: blur(3px); 
-    }
-  }
-  
+a {
+  position: relative;
+  left: 1400px;
+  top: 25px;
+  -webkit-text-fill-color: rgb(244, 100, 3);
+  text-shadow: 3px 3px 6px darkred;
 }
 
 .flex-container {
@@ -169,10 +147,8 @@ button {
   flex-direction: column;
   flex-wrap: wrap;
   position: absolute;
-  margin-inline: 30%;
-  margin-block: auto;
-  top: 23%;
-  left: -100px;
+  top: 22%;
+  left: 450px;
   font: 1em sans-serif;
   font-style: oblique;
   width: 55em;
@@ -236,35 +212,171 @@ bottom-section {
 }
 
 
-@media only screen and (max-width: 510px) {
+@media only screen and (max-width: 600px) {
   .navbarContainer {
-    top: 5%;
-    left: 45%;
+    left: 0px;
   }
 
-  .flex-container{
-    display: flex;
-    
-    position: absolute;
-    margin-left: 20%;
-    left: -60%;
-    
-    
+  #bgimg {
+    height: auto;
+    width: auto;
   }
-}
 
-@media only screen and (min-width: 511px) and (max-width: 920px) {
- 
-  .navbarContainer {
-    top: 6%;
-    left: 42%;
+  h2 {
+    bottom: 15px;
+    left: 1px;
+
+  }
+
+  a {
+    top: 10px;
+    left: 8px;
+  }
+
+  #map {
+    height: 900px;
+    width: 100%;
+    position: fixed;
+    top: -750px;
+    left: -0%;
   }
 
   .flex-container {
     position: absolute;
     top: 15%;
-    margin-left: 1%;
-    left:-120px;
+    left: -185px;
+  }
+
+  .user-info1 {
+    position: relative;
+    top: -1350px;
+    left: -112px;
+    width: 550px;
+    transform: translateX(1%);
+  }
+  
+}
+
+@media only screen and (min-width: 601px) and (max-width: 920px) {
+ 
+  .navbarContainer {
+    right: 2px;
+  }
+
+  h1 {
+    color: transparent;
+  }
+  h2 {
+    bottom: 15px;
+    left: 32px;
+  }
+
+
+  a {
+    top: 11px;
+    left: 20px;
+  }
+
+  #bgimg {
+    height: auto;
+    width: auto;
+  }
+
+  #map {
+    height: 700px;
+    width: 80%;
+    position: fixed;
+    top: -550px;
+    left: 10.5%;
+  }
+
+  .flex-container {
+    position: absolute;
+    top: 15%;
+    left: 50%; 
+    transform: translateX(-50%);
+  }
+
+  .user-info1 {
+    position: relative;
+    top: -1350px;
+    left: auto;
+    width: auto;
+    transform: translateX(5%);
   }
 }
 
+@media only screen and (min-width: 921px) and (max-width: 1440px) {
+
+  .navbarContainer {
+    right: 2px;
+  }
+
+  h1 {
+    color: transparent;
+  }
+
+  h2 {
+    bottom: 12px;
+    left: 95px;
+
+  }
+
+  a {
+    top: 11px;
+    left: 30px;
+  }
+
+  #bgimg {
+    height: auto;
+    width: auto;
+  }
+
+  #map {
+    height: 800px;
+    width: 70%;
+    position: fixed;
+    top: -200px;
+    left: 15%;
+  }
+
+  .flex-container {
+    position: absolute;
+    top: 15%;
+    left: 50%; 
+    transform: translateX(-50%);
+  }
+
+  .user-info1 {
+    position: relative;
+    top: -1350px;
+    left: 1%;
+    width: auto;
+    transform: translateX(5%);
+  }
+}
+
+@media only screen and (min-width: 1441px) and (max-width: 1820px) {
+
+  a {
+    left: 45px;
+  }
+
+  .flex-container {
+    position: absolute;
+    top: 15%;
+    left: 50%; 
+    transform: translateX(-50%);
+  }
+
+  .user-info1 {
+    position: absolute;
+    top: 80px;
+    left: -25px;
+    height: 50px;
+    padding-right: 55px;
+    padding-top: -15px;
+    padding-left: -10px;
+    transform: translateX(5%);
+  }
+}
