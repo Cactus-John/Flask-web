@@ -10,24 +10,30 @@
     <script src="https://kit.fontawesome.com/6b0ea6f5c6.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxjWux8Hz1L5m6yQuFrY7m1DGcUrgUmow&callback=initMap"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxjWux8Hz1L5m6yQuFrY7m1DGcUrgUmow&callback=initMap"></script>
 
 </head>
 
 <body onload="initMap()">
-    <img id ="bgimg" src="../static/images/weather.jpg">
+    <img id="bgimg" src="../static/images/weather.jpg">
     {% if 'user_id' in session %}
+    <div class="user-container">
     <div class="user-info1">
-        <span class="username-text">
+        <span class="username-text1">
             {{ session['username'] }}
         </span>
-        <span class="icon">
-            <i class="fas fa-user"></i>
-        </span> 
+        <span class="icon1">
+            <a href="{{url_for('dashboard')}}">
+                <i class="fas fa-user"></i>
+            </a>
+            
+        </span>
+    </div>
     </div>
     {% endif %}
-    
-    
+
+
 
     <nav class="navbarContainer">
         <h1>Weather Forecast</h1>
@@ -39,44 +45,43 @@
         </div>
         </div>
     </nav>
-    
+
     <div class="flex-container">
-        
-            <div class="flex-item1">
-                <p class="headerText"> {{ title }} Weather</p>
-            </div>
-            <div class="flex-item2">
-                <p> {{ status }} </p>
-            </div>
-            <div class="flex-item3">
-                <p> {{ temp }} &deg;C </p>
-            </div>
-            <img src="https://openweathermap.org/img/wn/{{icon}}.png" alt="weather slika">
-            <div class="flex-item4">
-                <p> Feels like {{ feels_like }} &deg;</p>
 
-            </div>
+        <div class="flex-item1">
+            <p class="headerText"> {{ title }} Weather</p>
+        </div>
+        <div class="flex-item2">
+            <p> {{ status }} </p>
+        </div>
+        <div class="flex-item3">
+            <p> {{ temp }} &deg;C </p>
+        </div>
+        <img src="https://openweathermap.org/img/wn/{{icon}}.png" alt="weather slika">
+        <div class="flex-item4">
+            <p> Feels like {{ feels_like }} &deg;</p>
 
-            <form action="/weather">
-                <div class="flex-item5"><input type="text" name="city" id="city" placeholder="Enter a City" /></div>
-                <div class="flex-item6"><button type="submit" name="search-btn">Submit</button></div>
-            </form>
-            
+        </div>
+
+        <form action="/weather">
+            <div class="flex-item5"><input type="text" name="city" id="city" placeholder="Enter a City" /></div>
+            <div class="flex-item6"><button type="submit" name="search-btn">Submit</button></div>
+        </form>
+
     </div>
 
     {% if 'user_id' in session %}
-        <div id="map"></div>
+    <div id="map"></div>
     {% endif %}
 
-    
     <script>
         function initMap() {
-          var mapOptions = {
-            center: { lat: 45.804, lng: 15.720 },
-            zoom: 9,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-          };
-          var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+            var mapOptions = {
+                center: { lat: 45.804, lng: 15.720 },
+                zoom: 9,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById('map'), mapOptions);
         }
     </script>
 </body>

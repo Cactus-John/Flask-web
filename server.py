@@ -13,10 +13,10 @@ app = Flask(__name__)
 app.secret_key = "my_secret_key"
 
 conn = sql.connect('db_users.db')
-print ("Opened database successfully")
+#print ("Opened database successfully")
 
 conn.execute('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)')
-print ("Table created successfully")
+#print ("Table created successfully")
 conn.close()
 
 @app.route("/signup", methods=["GET", "POST"])
@@ -26,7 +26,7 @@ def signup():
             username = request.form['username']
             password = request.form['password']
 
-            # Check if the username already exists
+            # provjera ako user vec postoji
             with sql.connect("db_users.db") as con:
                 cur = con.cursor()
                 cur.execute("SELECT * FROM users WHERE username = ?", (username,))
@@ -36,17 +36,17 @@ def signup():
                     flash('Account with this username already exists. Please choose a different username.', 'error')
                     return render_template("signup.html")
 
-                # If the username doesn't exist, proceed with signup
+                # ako ne postoji useranme, nastavi sa sign upanjem
                 cur.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
                 con.commit()
 
-                # Log in the user after successful signup
+                # Log in usera nakon uspjesnog signupa
                 cur.execute("SELECT * FROM users WHERE username = ? AND password = ?", (username, password))
                 user = cur.fetchone()
 
 
                 if user:
-                    # Store user_id in the session to mark them as logged in
+                    # spremi userov id u session i markaj ga ko loginanog
                     session['user_id'] = user[0]
                     session['username'] = username
                     flash('Signup and login successful', 'success')
@@ -75,7 +75,7 @@ def login():
                 user = cur.fetchone()
 
                 if user:
-                    # Log in the user by storing their ID in the session
+                    # loginaj usera spremajuci njegov ID u session
                     session['user_id'] = user[0]
                     session['username'] = username
                     flash('Login successful', 'success')
@@ -95,7 +95,7 @@ def login():
 def dashboard():
     if 'user_id' in session:
         username = session['username']
-        # Retrieve user information from the database using the session ID
+        # prikupi podatke usera iz baze koristeci session
         with sql.connect("db_users.db") as con:
             cur = con.cursor()
             cur.execute("SELECT * FROM users WHERE id = ?", (session['user_id'],))
@@ -104,13 +104,13 @@ def dashboard():
         if user:
             return render_template("dashboard.html", user=user, username=username)
 
-    # If user is not logged in, redirect to the login page
+    # ako user nije ulogiran, redirectaj do login pagea
     flash('You need to login first', 'error')
     return redirect(url_for('login'))
 
 @app.route("/logout")
 def logout():
-    # Clear the session to log out the user
+    #ocisti sesiju da user postane log outan
     session.clear()
     flash('You have been logged out', 'success')
     return redirect(url_for('login'))

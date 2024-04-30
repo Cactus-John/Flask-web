@@ -11,18 +11,21 @@ $paddingForFlexItems: .2%;
 
 body {
   perspective: none;
-  background: url("../images/red-glowing-weather-4k-qj-1920x1080.jpg");
+  background: url("../images/weather.jpg");
+  background-repeat: no-repeat;
+  overflow-x: hidden;
 }
 
 img {
   height: auto;
   width: auto;
+
 }
 
 #bgimg {
   height: 100%;
   width: 100%;
-  margin-bottom:-10px;
+  margin-bottom: -10px;
 }
 
 #map {
@@ -31,7 +34,7 @@ img {
   position: fixed;
   top: -200px;
   left: 250px;
-  box-shadow: 42px 32px 84px red;
+  box-shadow: 5px 5px 84px rgb(17, 46, 210);
   filter: drop-shadow(12px 12px 24px black);
 }
 
@@ -49,37 +52,64 @@ h2 {
   display: inline-block;
   text-align: start;
   font-weight: bolder;
-  
+
   letter-spacing: 2px;
   filter: drop-shadow(1px 1px 0px white);
   font-size: 36px;
   padding-left: 10px;
   -webkit-text-fill-color: rgb(157, 76, 0);
   font-weight: bolder;
-  text-shadow: 1px 1px 0px rgb(89, 89, 5);
+  text-shadow: 1px 1px 0 rgb(89, 89, 5);
   font-weight: bolder;
   position: relative;
   left: 100px;
 }
 
-
-
-.user-info1 {
+.user-container {
   display: flex;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
   flex-direction: row;
   flex: 1;
   position: absolute;
-  top: 100px;
-  left: 1425px;
-  width: 250px;
-  padding: 65px;
-  padding-right: 55px;
-  background: conic-gradient(from 21.3416rad at 39.4% 1%, rgba(171, 3, 62, 0.566), rgb(25, 23, 23));
-
-  border-radius: 5px;
+  top: 10%;
+  left: -1%;
+  height: 10%;
+  width: 19%;
+  padding: 52px;
+  border-radius: 6%;
+  box-shadow: 25px 25px 45px rgb(188, 140, 95);
   filter: contrast(5);
+
+  .user-info1 {
+    top: 1px;
+    width: 88%;
+    height: 300%;
+
+    .username-text1 {
+      color: darkmagenta;
+      text-shadow: 1px 1px 25px rgb(255, 255, 255);
+      font-size: 32px;
+      font-weight: bolder;
+      position: relative;
+      top: 90px;
+      left: 160px;
+    }
+
+    .icon1 {
+      text-decoration: none;
+      margin-left: 4px;
+      font-weight: bolder;
+      font-size: 32px;
+      color: rgb(68, 8, 68);
+      text-shadow: 24px 24px 25px rgb(0, 0, 0);
+      position: relative;
+      top: 65px;
+      left: 120px;
+
+    }
+
+  }
 }
 
 button {
@@ -91,7 +121,8 @@ button {
   text-decoration: none;
   cursor: pointer;
   border-radius: 5px;
-  transition: background-color 0.5s ease-in-out;
+  transition: background-color .5s ease-in-out;
+
   &:hover {
     background: linear-gradient(to right, #3498db, #2ecc71);
     border: none;
@@ -103,8 +134,6 @@ button {
   --bgcolor: red;
   --textcolor: rgb(253, 118, 69);
 }
-
-
 
 .headerText {
   font-size: $h1fontSize;
@@ -120,8 +149,8 @@ button {
   position: absolute;
   align-items: center;
   flex-direction: row;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   height: 40px;
   width: 100px;
   background: conic-gradient(from 21.3416rad at 39.4% 1%, rgb(210, 205, 205), rgb(79, 39, 2), );
@@ -130,7 +159,6 @@ button {
   filter: blur(1px);
   filter: drop-shadow(5px 5px 20px rgb(255, 102, 0));
 
-  
 }
 
 a {
@@ -153,7 +181,6 @@ a {
   font: 1em sans-serif;
   font-style: oblique;
   width: 55em;
-
   filter: drop-shadow(2px 2px 10px red);
 
   .flex-item1 {
@@ -197,32 +224,41 @@ input {
   padding: 10px;
   color: #2c3e50;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  transition: border-color 0.3s ease-in-out;
+  transition: border-color .3s ease-in-out;
+
   &:hover {
     border-color: #e74c3c;
     filter: drop-shadow(10px 10px 100px yellow);
   }
-  
+
 }
 
 bottom-section {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  
   position: absolute;
-  top:500px;
-  left:250px;
+  top: 400px;
+  left: 550px;
+
+  #items {
+    font-size: 42px;  
+    
+  }
 }
 
-
 @media only screen and (max-width: 600px) {
+
   .navbarContainer {
-    left: 0px;
+    left: 0;
   }
 
   #bgimg {
     height: auto;
     width: auto;
   }
-
 
   h2 {
     bottom: 25px;
@@ -252,31 +288,37 @@ bottom-section {
 
   .user-info1 {
     position: relative;
-    top: -1350px;
-    left: -112px;
-    width: 550px;
-    padding: 15px;
+    top: -15px;
+    left: -102px;
+    width: 570px;
+    padding: 10px;
     transform: translateX(1%);
   }
-  
+
+  .user-container {
+    top: 25px;
+    left: 2500px;
+    
+  }
+
 }
 
 @media only screen and (min-width: 601px) and (max-width: 920px) {
- 
+
   .navbarContainer {
     right: 2px;
   }
 
   h1 {
     color: beige;
-    
+
   }
+
   h2 {
     bottom: 30px;
     font-size: 28px;
     left: 32px;
   }
-
 
   a {
     top: -18px;
@@ -299,7 +341,7 @@ bottom-section {
   .flex-container {
     position: absolute;
     top: 15%;
-    left: 50%; 
+    left: 50%;
     transform: translateX(-50%);
   }
 
@@ -310,6 +352,12 @@ bottom-section {
     width: auto;
     padding: 15px;
     transform: translateX(5%);
+  }
+
+  .user-container {
+    top: 25px;
+    left: 2500px;
+    
   }
 }
 
@@ -350,16 +398,26 @@ bottom-section {
   .flex-container {
     position: absolute;
     top: 15%;
-    left: 50%; 
+    left: 50%;
     transform: translateX(-50%);
   }
 
   .user-info1 {
     position: relative;
-    top: -1350px;
-    left: -20px;
+    top: auto;
+    left: -100px;
     width: auto;
-    padding: 15px;
+
+  }
+
+  
+
+  .user-container {
+    top: 100px;
+    left: -150px;
+    width: 320px;
+    padding: 52px;
+    text-align: end;
   }
 }
 
@@ -372,7 +430,7 @@ bottom-section {
   .flex-container {
     position: absolute;
     top: 15%;
-    left: 50%; 
+    left: 50%;
     transform: translateX(-50%);
   }
 
