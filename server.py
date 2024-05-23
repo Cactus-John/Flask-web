@@ -13,10 +13,8 @@ app = Flask(__name__)
 app.secret_key = "my_secret_key"
 
 conn = sql.connect('db_users.db')
-#print ("Opened database successfully")
-
 conn.execute('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)')
-#print ("Table created successfully")
+
 conn.close()
 
 @app.route("/signup", methods=["GET", "POST"])

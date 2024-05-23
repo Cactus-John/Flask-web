@@ -1,5 +1,6 @@
 body {
-  background-color: black;
+  background-color: rgb(43, 38, 38);
+  overflow-y: hidden;
 }
 
 h4 {
@@ -9,15 +10,20 @@ h4 {
   left: 1%;
 }
 
+a[href*=home] {
+  color: white;
+  background-color: red;
+}
+
 .form-container {
-  position: fixed;
-  display: inline-flex;
+  height: 90%;
+  width: auto;
+  display: flex;
   flex-direction: column;
-  margin-block-start: 200px;
-  margin-inline-start: 600px;
-  padding: 10px;
+  align-items: center;
+  justify-content: center;
   border-radius: 8px;
-  background-color: rgb(61, 7, 61);
+  background-color: rgb(148, 21, 148);
   box-shadow: 0.9px 0.9px 20px black;
   padding: 25px;
 }
@@ -27,6 +33,14 @@ h4 {
 .form-container #item4 {
   color: aquamarine;
   -webkit-text-fill-color: white;
+}
+.form-container button {
+  background-color: rgb(255, 255, 255);
+  border-radius: 5%;
+}
+.form-container button:hover {
+  background-color: gray;
+  color: wheat;
 }
 
 @media only screen and (max-width: 900px) {

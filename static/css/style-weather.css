@@ -3,6 +3,7 @@ body {
   background: url("../images/weather.jpg");
   background-repeat: no-repeat;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 img {
