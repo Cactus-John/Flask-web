@@ -17,24 +17,7 @@
 
 <body onload="initMap()">
     <img id="bgimg" src="../static/images/weather.jpg">
-    {% if 'user_id' in session %}
-    <div class="user-container">
-    <div class="user-info1">
-        <span class="username-text1">
-            {{ session['username'] }}
-        </span>
-        <span class="icon1">
-            <a href="{{url_for('dashboard')}}">
-                <i class="fas fa-user"></i>
-            </a>
-            
-        </span>
-    </div>
-    </div>
-    {% endif %}
-
-
-
+    
     <nav class="navbarContainer">
         <h1>Weather Forecast</h1>
         <div class="navbar">

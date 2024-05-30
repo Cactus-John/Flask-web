@@ -135,18 +135,16 @@ def home():
 
 def get_weather():
     city = request.args.get('city')
-
     # Handlea prazan string ili razmake
     if city is not None and not bool(city.strip()):
         city = "Samobor"
-
+        
     weather_data = get_current_weather(city)
-    
     # Handlea error 404 (city not found); 200 -> success
+    
     if not weather_data['cod'] == 200:
         return render_template('city_not_found.html')
-
-
+    
     return render_template (
         "weather.html",
         title=weather_data["name"],
@@ -155,7 +153,6 @@ def get_weather():
         icon=weather_data["weather"][0]["icon"],
         feels_like=f"{weather_data['main']['feels_like']:.1f}"
     )
-    
     
     
 #-----------------------------------------------------------------------------------------#

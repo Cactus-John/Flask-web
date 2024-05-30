@@ -1,9 +1,7 @@
 body {
   perspective: none;
   background: url("../images/weather.jpg");
-  background-repeat: no-repeat;
   overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 img {
@@ -22,7 +20,8 @@ img {
   position: fixed;
   top: -200px;
   left: 250px;
-  box-shadow: 5px 5px 84px rgb(17, 46, 210);
+  border: 4px rgb(30, 30, 25) solid;
+  box-shadow: 5px 5px 84px rgb(227, 141, 2);
   filter: drop-shadow(12px 12px 24px black);
 }
 
@@ -40,58 +39,16 @@ h2 {
   display: inline-block;
   text-align: start;
   font-weight: bolder;
-  letter-spacing: 2px;
-  filter: drop-shadow(1px 1px 0px white);
+  letter-spacing: 3px;
+  filter: drop-shadow(1px 1px 0px rgb(0, 0, 0));
   font-size: 36px;
   padding-left: 10px;
-  -webkit-text-fill-color: rgb(157, 76, 0);
+  -webkit-text-fill-color: rgb(255, 0, 0);
   font-weight: bolder;
-  text-shadow: 1px 1px 0 rgb(89, 89, 5);
+  text-shadow: 1px 1px 2px rgb(0, 0, 0);
   font-weight: bolder;
   position: relative;
   left: 100px;
-}
-
-.user-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  flex: 1;
-  position: absolute;
-  top: 10%;
-  left: -1%;
-  height: 10%;
-  width: 19%;
-  padding: 52px;
-  border-radius: 6%;
-  box-shadow: 25px 25px 45px rgb(188, 140, 95);
-  filter: contrast(5);
-}
-.user-container .user-info1 {
-  top: 1px;
-  width: 88%;
-  height: 300%;
-}
-.user-container .user-info1 .username-text1 {
-  color: darkmagenta;
-  text-shadow: 1px 1px 25px rgb(255, 255, 255);
-  font-size: 32px;
-  font-weight: bolder;
-  position: relative;
-  top: 90px;
-  left: 160px;
-}
-.user-container .user-info1 .icon1 {
-  text-decoration: none;
-  margin-left: 4px;
-  font-weight: bolder;
-  font-size: 32px;
-  color: rgb(68, 8, 68);
-  text-shadow: 24px 24px 25px rgb(0, 0, 0);
-  position: relative;
-  top: 65px;
-  left: 120px;
 }
 
 button {
@@ -127,14 +84,14 @@ button:hover {
 .navbarContainer {
   /*Container navigacije za odlazak na druge stranice */
   display: inline-flex;
-  position: absolute;
+  position: fixed;
   align-items: center;
   flex-direction: row;
   top: 0;
   left: 0;
   height: 40px;
   width: 100%;
-  background: conic-gradient(from 21.3416rad at 39.4% 1%, rgb(210, 205, 205), rgb(79, 39, 2));
+  background: conic-gradient(from 21.3416rad at 39.4% 1%, rgb(210, 205, 205), rgb(50, 34, 19));
   height: 100px;
   width: 1920px;
   filter: blur(1px);
@@ -157,11 +114,12 @@ a {
   flex-wrap: wrap;
   position: absolute;
   top: 22%;
-  left: 450px;
-  font: 1em sans-serif;
+  left: 42%;
+  font: 1.5em sans-serif;
   font-style: oblique;
-  width: 55em;
-  filter: drop-shadow(2px 2px 10px red);
+  width: 15em;
+  height: 25em;
+  filter: drop-shadow(2px 2px 10px rgb(230, 0, 255));
 }
 .flex-container .flex-item1 {
   flex-direction: directionForflexItems;

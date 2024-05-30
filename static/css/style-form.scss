@@ -1,5 +1,5 @@
 body {
-    background-color: wheat;
+    background-color: rgb(28, 15, 15);
     overflow-x: hidden;
 }
 
@@ -9,10 +9,10 @@ body {
 
 h1 {
     text-align: center;
-    color:black;
+    color:rgb(255, 255, 255);
     position: relative;
-    top: 1%;
-    left: 2%;
+    margin-top: 10%;
+    left: 1%;
 }
 
 h2 {
@@ -26,6 +26,7 @@ h2 {
 a {
     text-decoration: none;
     font: 1rem sans-serif;
+    color: rgb(255, 88, 249);
 }
 
 .form {
@@ -35,7 +36,7 @@ a {
     margin: 6%;
     position: relative;
     top: auto;
-    left: 2%;
+    left: 1%;
 }
 
 label {
@@ -61,10 +62,11 @@ input[type=password] {
 
 button {
     width: 64px;
+    height: 38px;
     border: 2px solid red;
     color:darkred;
     position: relative;
-    left: 38%;
+    left: 37%;
     
 
     &:hover{
@@ -81,7 +83,7 @@ form {
     flex-direction: column;
     flex-wrap: nowrap;
     position: relative;
-    color: darkred;
+    color: rgb(255, 88, 249);
 }
 
 .navbar{
@@ -98,7 +100,7 @@ form {
     flex-wrap: nowrap;
     position: absolute;
     top: 35%;
-    left: 35%;
+    left: 45%;
     a {
         margin: 0 40px 0 0;
     }
@@ -107,9 +109,9 @@ form {
 
 
 .user-text {
-    color: darkred;
+    color: rgb(255, 0, 247);
     font-weight: bold;
-    filter: drop-shadow(2px 2px 0px red);
+    filter: drop-shadow(2px 2px 0px rgb(84, 3, 78));
 }
 
 .hover-link {
