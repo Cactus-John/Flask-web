@@ -93,7 +93,6 @@ button:hover {
   width: 100%;
   background: conic-gradient(from 21.3416rad at 39.4% 1%, rgb(210, 205, 205), rgb(50, 34, 19));
   height: 100px;
-  width: 1920px;
   filter: blur(1px);
   filter: drop-shadow(5px 5px 20px rgb(255, 102, 0));
 }
